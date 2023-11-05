@@ -1,0 +1,60 @@
+.nav-item {
+  font-size: 20px;
+  font-family: sans-serif;
+}
+.nav-item a {
+  color: white;
+}
+.navbar-brand {
+  padding: 0px 0px 0px 6px;
+  font-size: 25px;
+  font-family: sans-serif;
+  margin: 0px;
+}
+
+.logo {
+  display: flex;
+  margin-left: 25px;
+}
+
+.logoImg {
+  display: inline;
+}
+.logoText {
+  display: inline;
+  padding-top: 10px;
+}
+
+.navbar {
+  height: 60px;
+  display: flex;
+}
+.leftNav {
+  width: 40%;
+}
+.rightNav {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logoText a {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 1012px) and (min-width: 800px) {
+  .navbar {
+    height: 100px;
+    flex-direction: column;
+  }
+  .leftNav {
+    width: 100%;
+    text-align: center;
+  }
+  .rightNav {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,50 @@
+.footCol {
+  text-align: center;
+  display: inline-block;
+  width: 19%;
+  height: 160px;
+  margin: 2px;
+}
+.footCol ul {
+  list-style-type: none;
+}
+.footCol a {
+  color: white;
+  text-decoration: none;
+}
+
+h3 {
+  color: white;
+  margin: 10px 0px 10px 0px;
+}
+
+#addresFooter {
+  color: white;
+  width: 24%;
+}
+
+.footer-container {
+  background-image: linear-gradient(
+    to right,
+    rgb(8, 22, 146),
+    rgb(37, 117, 209)
+  );
+  width: 100%;
+}
+
+.containers {
+  width: 100%;
+  display: flex;
+}
+
+#copyRightContent {
+  background-color: black;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+#copyRightContent p {
+  padding-top: 15px;
+}

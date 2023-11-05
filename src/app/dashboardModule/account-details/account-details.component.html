@@ -1,0 +1,105 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" routerLink="../create-account">
+        Add Account
+      </button>
+    </div>
+    <div class="col">
+      <button
+        *ngIf="accounts != null"
+        class="btn btn-success"
+        style="margin-left: 50%"
+        (click)="downloadPDF()"
+      >
+        <i class="fa fa-download"></i>
+        Download
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="card">
+      <p-table [value]="accounts" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            Account Details
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Account Id</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Balance</th>
+            <th>Creation Date</th>
+            <th>Creation Time</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-account>
+          <tr>
+            <td>
+              <button
+                class="btn btn-outline-primary"
+                (click)="submitForm(account.accountId)"
+              >
+                {{ account.accountId }}
+              </button>
+            </td>
+            <td>{{ account.accountStatus }}</td>
+            <td>{{ account.accountType }}</td>
+            <td>{{ account.balance | currency: "INR":"symbol" }}</td>
+            <td>{{ account.dateCreated }}</td>
+            <td>{{ account.timeCreated }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="card my-5">
+      <p-table [value]="statements" responsiveLayout="scroll" *ngIf="isShown">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <span>Transaction Details of {{ accId }} </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Transaction Id</th>
+            <th>Sender Account</th>
+            <th>Receiver Account</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date and Time</th>
+            <th>Description</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-statement>
+          <tr>
+            <td>{{ statement.transactionId }}</td>
+            <td>{{ statement.fromAccount }}</td>
+            <td>{{ statement.toAccount }}</td>
+            <td>{{ statement.amount }}</td>
+            <td>
+              <span class="order-badge order-delivered">{{
+                statement.transactionStatus
+              }}</span>
+            </td>
+            <td>{{ statement.transactionDate }}</td>
+            <td>{{ statement.description }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td class="text-center text-danger" colspan="7">
+              There are no transactions yet.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<br />
+<br />

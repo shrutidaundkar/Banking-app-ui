@@ -1,0 +1,110 @@
+<div class="container" style="width: 60%">
+  <div
+    class="card mb-3"
+    style="
+      padding: 5%;
+      width: 100%;
+      margin-top: 20px;
+      border-color: cadetblue;
+      border-width: 3px;
+      background-color: ghostwhite;
+    "
+  >
+    <div class="row">
+      <div class="col">
+        <h2 class="text-primary text-center" style="font-size: 25px">
+          Profile
+        </h2>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Firstname :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.firstname }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Lastname :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.lastname }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Email :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.email }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Mobile Number :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.mobile }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Gender :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.gender }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Age :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.age }} years</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 for="name">Date Of Birth :</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.dateofbirth }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" id="update">
+            <button class="btn btn-primary" routerLink="../update-profile">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- --------------------------------------------- -->
+    <div class="container row">
+      <div class="col-md-6">
+        <input type="file" (change)="onFileChanged($event)" />
+      </div>
+      <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload" />
+      </div>
+    </div>
+    <hr />
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf="message">{{ message }}</div>
+      </div>
+    </div>
+    <div class="container row">
+      <input type="button" (click)="getImage()" value="Get Image" />
+    </div>
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf="retrievedImage">
+          <img [src]="retrievedImage" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

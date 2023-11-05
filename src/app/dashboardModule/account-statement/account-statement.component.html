@@ -1,0 +1,252 @@
+<div class="container-fluid">
+  <div class="row" style="margin-left: 28%; margin-bottom: 20px">
+    <div class="col-md-6">
+      <div
+        class="card"
+        style="
+          width: 500px;
+          margin-top: 20px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
+        <article class="card-body">
+          <form [formGroup]="statementForm" class="mt-5">
+            <h2
+              class="text-primary text-center"
+              style="font-size: 25px; margin-bottom: 5%"
+            >
+              Account Statements
+            </h2>
+            <br />
+            <div class="form-group row">
+              <div class="form-group">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="fromAccount"
+                  style="width: 70%; margin-left: 13%"
+                >
+                  <option disabled selected value="">
+                    Select Account to View Statements
+                  </option>
+                  <option *ngFor="let item of accounts; let i = index">
+                    {{ item.accountId }}
+                  </option>
+                </select>
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.fromAccount.invalid &&
+                    getaccountFormControls.fromAccount.touched
+                  "
+                >
+                  Account number is required
+                </small>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <div class="form-group" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!statementForm.valid"
+                  class="btn btn-success"
+                >
+                  Send
+                </button>
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <br />
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card my-5" *ngIf="isShown">
+  <p-table
+    #dt1
+    (sortFunction)="customSort($event)"
+    [customSort]="true"
+    [value]="statements"
+    dataKey="id"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    styleClass="p-datatable-statements p-datatable-gridlines"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="[
+      'fromAccount',
+      'toAccount',
+      'transactionId',
+      'transactionStatus',
+      'transactionDate'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filterGlobal($event.target, 'contains')"
+            placeholder="Search keyword"
+          />
+        </span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <span>Transaction Details of Account Number {{ fromAccountId }} </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="transactionId">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Transaction Id
+            <p-columnFilter
+              type="text"
+              field="transactionId"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="transactionId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="fromAccount">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Sender Account
+            <p-columnFilter
+              type="text"
+              field="fromAccount"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="fromAccount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="toAccount">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Receiver Account
+            <p-columnFilter
+              type="text"
+              field="toAccount"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="toAccount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="amount">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Amount
+            <p-columnFilter
+              type="numeric"
+              field="amount"
+              display="menu"
+              currency="INR"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="amount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="transactionStatus">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Status
+            <p-columnFilter
+              type="text"
+              field="transactionStatus"
+              matchMode="equals"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="transactionStatus"></p-sortIcon>
+        </th>
+        <th pSortableColumn="transactionDate">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Date
+            <p-columnFilter
+              type="date"
+              field="transactionDate"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="transactionDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="transactionTime">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Time
+            <p-columnFilter
+              type="text"
+              field="transactionTime"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="transactionTime"></p-sortIcon>
+        </th>
+        <th pSortableColumn="description">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Description
+            <p-columnFilter
+              type="text"
+              field="description"
+              matchMode="equals"
+              display="menu"
+            ></p-columnFilter>
+          </div>
+          <p-sortIcon field="description"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-statement>
+      <tr>
+        <td>
+          {{ statement.transactionId }}
+        </td>
+        <td>
+          <span class="image-text">{{ statement.fromAccount }}</span>
+        </td>
+        <td>
+          <span class="image-text">{{ statement.toAccount }}</span>
+        </td>
+        <td>
+          {{ statement.amount | currency: "INR":"symbol" }}
+        </td>
+        <td>
+          <span [class]="'statement-badge status-' + statement.status">{{
+            statement.transactionStatus
+          }}</span>
+        </td>
+        <td>
+          {{ statement.transactionDate | date: "MM/dd/yyyy" }}
+        </td>
+        <td>
+          {{ statement.transactionTime }}
+        </td>
+
+        <td>
+          {{ statement.description }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No statements found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

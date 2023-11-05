@@ -1,0 +1,33 @@
+label {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+#data {
+  font-size: 17px;
+}
+
+.rates {
+  display: flex;
+}
+
+.rates label {
+  font-size: 20px;
+  margin-right: 7px;
+  color: rgb(165, 16, 16);
+  font-weight: 500;
+}
+
+.rates p {
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 7%;
+  font-size: 15px;
+}
+
+select {
+  font-size: 17px;
+}

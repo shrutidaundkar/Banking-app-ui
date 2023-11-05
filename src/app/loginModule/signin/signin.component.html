@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 UserCredImg">
+      <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <article class="card-body">
+          <form [formGroup]="signinForm">
+            <h2 class="mb-3 text-primary" id="formHeading">Login</h2>
+            <div class="form-group row">
+              <div class="form-group" id="email">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  [class.is-invalid]="
+                    getSigninFormControls.email.invalid &&
+                    getSigninFormControls.email.touched
+                  "
+                  placeholder="Email"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSigninFormControls.email.invalid &&
+                    getSigninFormControls.email.touched
+                  "
+                >
+                  Email is required
+                </small>
+              </div>
+              <div class="form-group" id="password">
+                <input
+                  [type]="inputType"
+                  class="form-control"
+                  formControlName="password"
+                  [class.is-invalid]="
+                    getSigninFormControls.password.invalid &&
+                    getSigninFormControls.password.touched
+                  "
+                  placeholder="Password"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSigninFormControls.password.invalid &&
+                    getSigninFormControls.password.touched
+                  "
+                >
+                  Password is required </small
+                ><br />
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  (change)="showPassword($event)"
+                />
+                Show Password
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="form-group row" id="forgotPassword">
+                <a routerLink="/forget-password"> Forgot password? </a>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!signinForm.valid"
+                  class="btn btn-success"
+                >
+                  Submit
+                </button>
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group row" id="redirectToSingUp">
+              <a routerLink="/signup"> New User? Click to SignUp </a>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

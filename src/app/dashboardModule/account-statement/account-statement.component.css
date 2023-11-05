@@ -1,0 +1,10 @@
+#buttons {
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+}
+::ng-deep .p-datatable .p-datatable-thead > tr > th{
+  font-size: 14px!important;
+}

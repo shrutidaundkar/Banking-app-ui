@@ -1,0 +1,25 @@
+.card {
+  width: 90%;
+  margin-top: 20px;
+  border: 3px solid cadetblue;
+  background-color: ghostwhite;
+  display: flex;
+}
+p {
+  margin-left: 30px;
+}
+#buttons {
+  text-align: center;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.form-group {
+  margin: 8px;
+}
+
+.row {
+  justify-content: center;
+}

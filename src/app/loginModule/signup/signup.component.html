@@ -1,0 +1,278 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 UserCredImg">
+      <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+    </div>
+    <div class="col-md-6 signUpForm">
+      <div class="card">
+        <article class="card-body">
+          <form [formGroup]="signupForm">
+            <h2 class="mb-3 text-primary" id="formHeading">Sign Up</h2>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <label>Firstname :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstname"
+                  [class.is-invalid]="
+                    getSignupFormControls.firstname.invalid &&
+                    getSignupFormControls.firstname.touched
+                  "
+                  placeholder="Firstname"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSignupFormControls.firstname.invalid &&
+                    getSignupFormControls.firstname.touched
+                  "
+                >
+                  Firstname is required
+                </small>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Lastname :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastname"
+                  [class.is-invalid]="
+                    getSignupFormControls.lastname.invalid &&
+                    getSignupFormControls.lastname.touched
+                  "
+                  placeholder="Lastname"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSignupFormControls.lastname.invalid &&
+                    getSignupFormControls.lastname.touched
+                  "
+                >
+                  Lastname is required
+                </small>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <br />
+              <div class="col">
+                <label style="margin-bottom: 5px">Gender :</label>
+                <br />
+                <div class="back">
+                  <div class="opt" id="opt1">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="male"
+                      formControlName="gender"
+                    />
+                    Male
+                  </div>
+                  <div class="opt" id="opt2">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="female"
+                      formControlName="gender"
+                    />
+                    Female
+                  </div>
+                </div>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSignupFormControls.gender.invalid &&
+                    getSignupFormControls.gender.touched
+                  "
+                >
+                  Gender is required
+                </small>
+              </div>
+
+              <div class="col" style="margin-left: 10px">
+                <div class="back">
+                  <label style="margin-top: 5%">Age:</label>
+                  <mat-slider
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    formControlName="age"
+                    tickInterval="1000"
+                    step="1"
+                    min="0"
+                    max="100"
+                    aria-label="units"
+                  >
+                  </mat-slider>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-bottom: 10px">
+              <div class="col">
+                <label>Date Of Birth :</label>
+                <input
+                  type="date"
+                  name="dob"
+                  [max]="getToday()"
+                  class="form-control"
+                  [class.is-invalid]="
+                    getSignupFormControls.dateofbirth.invalid &&
+                    getSignupFormControls.dateofbirth.touched
+                  "
+                  formControlName="dateofbirth"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getSignupFormControls.dateofbirth.invalid &&
+                    getSignupFormControls.dateofbirth.touched
+                  "
+                >
+                  Date Of Birth is required
+                </small>
+              </div>
+
+              <div class="col">
+                <label>Phone Number : </label>
+                <input
+                  type="number"
+                  [class.is-invalid]="
+                    getSignupFormControls.phoneno.invalid &&
+                    getSignupFormControls.phoneno.touched
+                  "
+                  class="form-control"
+                  formControlName="phoneno"
+                  placeholder="Phone numer"
+                />
+                <div
+                  *ngIf="
+                    (getSignupFormControls.phoneno.invalid &&
+                      getSignupFormControls.phoneno.touched) ||
+                    getSignupFormControls.phoneno.dirty
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.phoneno.errors?.required"
+                    >Phone Number is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.phoneno.errors?.pattern"
+                    >Phone Number must be 10 digit</small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+              <div class="col">
+                <label>Email :</label>
+                <input
+                  type="email"
+                  [class.is-invalid]="
+                    getSignupFormControls.email.invalid &&
+                    getSignupFormControls.email.touched
+                  "
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Email"
+                />
+                <div
+                  *ngIf="
+                    (getSignupFormControls.email.invalid &&
+                      getSignupFormControls.email.touched) ||
+                    getSignupFormControls.email.dirty
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.email.errors?.required"
+                    >Email is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.email.errors?.pattern"
+                    >Email is invalid</small
+                  >
+                </div>
+              </div>
+              <div class="col">
+                <label>Password : </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  [class.is-invalid]="
+                    getSignupFormControls.password.invalid &&
+                    getSignupFormControls.password.touched
+                  "
+                  placeholder="Password"
+                />
+                <div
+                  *ngIf="
+                    (getSignupFormControls.password.invalid &&
+                      getSignupFormControls.password.touched) ||
+                    getSignupFormControls.password.dirty
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.password.errors?.required"
+                    >Password is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getSignupFormControls.password.errors?.minlength"
+                    >Password must be at least 8 characters</small
+                  >
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!signupForm.valid"
+                  class="btn btn-success"
+                  style="margin-right: 5px"
+                >
+                  Submit
+                </button>
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row" id="redirectToSingin">
+              <a routerLink="/login">
+                Already Registered? Click here to Login
+              </a>
+            </div>
+          </form>
+        </article>
+        <ngx-spinner
+          bdColor="rgba(0, 0, 0, 0.8)"
+          size="medium"
+          color="#fff"
+          type="ball-spin"
+          [fullScreen]="true"
+          ><p style="color: white; font-size: 20px">
+            Please Wait...
+          </p></ngx-spinner
+        >
+      </div>
+    </div>
+  </div>
+</div>

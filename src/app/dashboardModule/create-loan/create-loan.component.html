@@ -1,0 +1,201 @@
+<br />
+<div class="container">
+  <div class="row" style="margin-left: 20%">
+    <div class="col-md-6">
+      <div
+        class="card"
+        style="
+          width: 700px;
+          margin-bottom: 20px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
+        <article class="card-body">
+          <h2 class="text-primary text-center" style="font-size: 25px">
+            Apply For Loan
+          </h2>
+          <form [formGroup]="createLoanForm">
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label>Loan Purpose : </label>
+              </div>
+              <div class="col-md-8">
+                <select
+                  style="height: 42px"
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                  (change)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
+                  "
+                  formControlName="loanPurpose"
+                >
+                  <option selected value="Home">
+                    Home Loan (7% Interest Rate)
+                  </option>
+                  <option value="Vehicle">
+                    Vehicle Loan (9% Interest Rate)
+                  </option>
+                  <option value="Personal">
+                    Personal Loan (12% Interest Rate)
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label>Amount (In Lakhs) : </label>
+              </div>
+              <div class="col-md-6">
+                <mat-slider
+                  style="width: 100%"
+                  class="example-margin"
+                  [max]="10000000"
+                  [min]="100000"
+                  [step]="100000"
+                  thumbLabel
+                  [displayWith]="formatAmount"
+                  aria-label="units"
+                  formControlName="loanAmount"
+                  (change)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
+                  "
+                >
+                </mat-slider>
+              </div>
+              <div class="col-md-2">
+                <p>{{ amount / 100000 }} Lakhs</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label>Tenure (In Months) : </label>
+              </div>
+              <div class="col-md-6">
+                <mat-slider
+                  style="width: 100%"
+                  class="example-margin"
+                  [max]="500"
+                  [min]="6"
+                  [step]="6"
+                  thumbLabel
+                  [displayWith]="formatTenure"
+                  formControlName="tenureInMonths"
+                  aria-label="units"
+                  [(ngModel)]="tenure"
+                  (input)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
+                  "
+                >
+                </mat-slider>
+              </div>
+              <div class="col-md-2">
+                <p>{{ tenure / 12 }} Years</p>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label>Account Number : </label>
+              </div>
+              <div class="col-md-8">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="accountId"
+                >
+                  <option disabled selected value="">
+                    Select Your Account Number
+                  </option>
+                  <option *ngFor="let item of accounts; let i = index">
+                    {{ item.accountId }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+              <div class="col-md-7">
+                <div class="row" id="data">
+                  <div class="rates">
+                    <div class="col-md-6">
+                      <label> Interest Rate: </label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ interestRate }} %</p>
+                    </div>
+                  </div>
+                  <div class="rates">
+                    <div class="col-md-6">
+                      <label>Monthly EMI: </label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ monthlyEMI | currency: "INR":"symbol" }}</p>
+                    </div>
+                  </div>
+                  <div class="rates">
+                    <div class="col-md-6">
+                      <label>Principal Amount: </label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ amount | currency: "INR":"symbol" }}</p>
+                    </div>
+                  </div>
+                  <div class="rates">
+                    <div class="col-md-6">
+                      <label> Interest Amount:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{ interestAmount | currency: "INR":"symbol" }}</p>
+                    </div>
+                  </div>
+                  <div class="rates">
+                    <div class="col-md-6">
+                      <label> Total Amount: </label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        {{ amount + interestAmount | currency: "INR":"symbol" }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <!-- chart -->
+              </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left: 35%">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  [disabled]="!createLoanForm.valid"
+                  class="btn btn-success"
+                  (click)="createLoan()"
+                >
+                  Submit
+                </button>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="margin-left: 10%"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

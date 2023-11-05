@@ -1,0 +1,44 @@
+.card{
+    margin-top: 50px;
+    border: 3px solid cadetblue;
+    background-color: ghostwhite;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+#buttons{
+    width: 100%;
+    text-align: center;
+}
+
+#formHeading{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#redirectToSingUp{
+    text-align: center;
+}
+
+#redirectToSingUp a{
+    text-decoration: none;
+}
+
+#forgotPassword a{
+    text-decoration: none;
+}
+
+.card-body{
+    border: 2px soild red;
+}
+
+.btn{
+    margin: 2px;
+}
+
+.form-group{
+    margin: 5px;
+}
