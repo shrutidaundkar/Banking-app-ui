@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../login-module.service';
+import { LoginModuleService } from '../../services/login-module.service';
 
 @Component({
   selector: 'app-forget-password',

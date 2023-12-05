@@ -1,34 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginModuleService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private readonly config: ConfigService) {}
   authListner = new Subject<boolean>();
 
-  url = "http://localhost:8080/server"
-
   saveUser(user: any): Observable<any> {
-    return this.http.post(this.url+'/save', user);
+    return this.http.post(`${this.config.getBaseUrl()}/save`, user);
   }
 
   loginUser(user: any): Observable<any> {
-    return this.http.post(this.url+'/login/', user);
+    return this.http.post(`${this.config.getBaseUrl()}/login/`, user);
   }
 
   forgetPassword(data: any): Observable<any> {
-    return this.http.post(this.url+'/forgot-password', data);
+    return this.http.post(`${this.config.getBaseUrl()}/forgot-password`, data);
   }
 
   resetPassword(data: any): Observable<any> {
-    return this.http.post(this.url+'/reset-password', data);
+    return this.http.post(`${this.config.getBaseUrl()}/reset-password`, data);
   }
 
   verifyEmail(data: any): Observable<any> {
-    return this.http.post(this.url+'/verify/', data);
+    return this.http.post(`${this.config.getBaseUrl()}/verify/`, data);
   }
 
   getAuthListner() {

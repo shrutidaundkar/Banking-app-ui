@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../login-module.service';
+import { LoginModuleService } from '../../services/login-module.service';
 
 @Component({
   selector: 'app-signup',
@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
       ]),
-      //addresses: new FormArray([new FormControl('', Validators.required)]),
       age: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       email: [
@@ -71,14 +70,6 @@ export class SignupComponent implements OnInit {
     return new Date().toISOString().split('T')[0];
   }
 
-  // addInputControl() {
-  //   (this.signupForm.controls['addresses'] as FormArray).push(new FormControl('', Validators.required));
-  // }
-
-  // removeInputControl(idx: number) {
-  //   (this.signupForm.controls['addresses'] as FormArray).removeAt(idx);
-  // }
-
   submitForm() {
     this.SpinnerService.show();
     const userSaveData = {
@@ -86,7 +77,6 @@ export class SignupComponent implements OnInit {
       lastname: this.signupForm.get('lastname')?.value,
       mobile: this.signupForm.get('phoneno')?.value,
       gender: this.signupForm.get('gender')?.value,
-      //addresses: this.signupForm.get('addresses')?.value,
       age: this.signupForm.get('age')?.value,
       email: this.signupForm.get('email')?.value,
       dateofbirth: this.signupForm.get('dateofbirth')?.value,

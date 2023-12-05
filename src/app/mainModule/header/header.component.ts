@@ -3,7 +3,7 @@ import  { OnInit } from '@angular/core'
 import  { Router } from '@angular/router'
 import  { NzNotificationService } from 'ng-zorro-antd/notification'
 import { Subject, Subscription } from 'rxjs'
-import  { LoginModuleService } from 'src/app/loginModule/login-module.service'
+import  { LoginModuleService } from 'src/app/services/login-module.service'
 
 @Component({
   selector: 'app-header',
@@ -15,10 +15,6 @@ export class HeaderComponent implements OnInit {
   loggedIn: boolean = false
   authStatusSub: Subscription = new Subscription()
   authListner = new Subject<boolean>()
-
-  // @Input()
-  // name: String = "";
-  // @Output() buttonClicked: EventEmitter<any> = new EventEmitter();
 
   constructor (
     private readonly router: Router,
@@ -38,7 +34,6 @@ export class HeaderComponent implements OnInit {
   }
 
   async logout (): Promise<void> {
-    // this.buttonClicked.emit("This button is clicked");
     localStorage.removeItem('userId')
     this.authListner.next(false)
     await this.router.navigate(['/login'])

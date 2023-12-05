@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../login-module.service';
+import { LoginModuleService } from '../../services/login-module.service';
 
 @Component({
   selector: 'app-verify-email',
