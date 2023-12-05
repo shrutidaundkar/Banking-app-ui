@@ -37,7 +37,9 @@ export class CreateAccountComponent implements OnInit {
     return this.createAccountForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("Account Component")
+  }
 
   submitForm() {
     var userId: number = Number(localStorage.getItem('userId'));

@@ -56,7 +56,9 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("Signup Component")
+  }
 
   formatLabel(value: number) {
     if (value >= 1) {

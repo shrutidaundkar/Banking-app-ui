@@ -8,5 +8,6 @@ import type { OnInit } from '@angular/core'
 })
 export class SideNavigationComponent implements OnInit {
   ngOnInit (): void {
+    console.log("Side nav component")
   }
 }

@@ -27,7 +27,6 @@ npm install
 After all the dependencies have been installed we can go ahead and start the development server using following command
 
 ```sh
-ng build
 ng serve
 ```
 

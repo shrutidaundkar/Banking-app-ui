@@ -34,7 +34,9 @@ export class ForgetPasswordComponent implements OnInit {
     return this.forgetpassForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("Forget-password module")
+  }
 
   submitForm() {
     this.SpinnerService.show();

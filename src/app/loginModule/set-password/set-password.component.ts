@@ -43,7 +43,9 @@ export class SetPasswordComponent implements OnInit {
     return this.setPasswordForm.controls;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Password Component")
+  }
 
   submitForm() {
     const token = this.route.snapshot.paramMap.get('token');

@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'XorBankClient';
-
-  // fun(data: any) {
-  //   console.log(data);
-  // }
 }
