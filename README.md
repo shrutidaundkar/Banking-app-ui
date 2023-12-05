@@ -10,12 +10,13 @@ Clone this repository to your system using following command
 git clone https://github.com/shrutidaundkar/Banking-app-ui.git
 ```
 
-This project needs a specific version of [Node.js](https://nodejs.org/) v12 to run.
+This project needs a specific version of [Node.js](https://nodejs.org/) v12 to run. But V14 also supports this version.
 If you do not have that version then install _Node Version Manager_ using this [link](https://github.com/coreybutler/nvm-windows/releases/download/1.1.12/nvm-setup.exe).
 After installing _Node Version Manager_ in terminal navigate to the project folder and use following command to change your current Node.js version to required V12
 
 ```sh
-nvm use 12.2.0
+nvm install 14.21.3
+nvm use 14.21.3
 ```
 
 Then we can install all the dependencies
@@ -24,12 +25,19 @@ Then we can install all the dependencies
 npm install
 ```
 
+Also make sure you have angular CLI tools by running `npm install @angular/cli` in your terminal.
+
 After all the dependencies have been installed we can go ahead and start the development server using following command
 
 ```sh
 ng serve
 ```
+## Linting
+To add linter to the project add a dependancy using `ng add @angular-eslint/schematics` then you can verify the code by running
 
+```sh
+npm run lint
+```
 Verify the deployment by navigating to your server address in your preferred browser.
 
 ```sh
