@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
-import { ProfileService } from 'src/app/services/profile.service';
+import { ProfileService } from 'src/app/services/userServices/profile.service';
 
 @Component({
   selector: 'app-update-profile',

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../../services/login-module.service';
+import { SignupService } from 'src/app/services/userServices/signup.service';
+
 
 @Component({
   selector: 'app-verify-email',
@@ -12,7 +13,7 @@ export class VerifyEmailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private loginModuleService: LoginModuleService,
+    private signupService: SignupService,
     private notificationService: NotificationService
   ) {}
 
@@ -25,7 +26,7 @@ export class VerifyEmailComponent implements OnInit {
     const data = {
       emailVerificationCode: token,
     };
-    this.loginModuleService.verifyEmail(data).subscribe(
+    this.signupService.verifyEmail(data).subscribe(
       (response) => {
         console.log(response);
         if (response.statusCode == 201) {

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
-import { AccountDetailsComponent } from './account-details/account-details.component';
-import { AccountStatementComponent } from './account-statement/account-statement.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
-import { CreateLoanComponent } from './create-loan/create-loan.component';
+import { AccountDetailsComponent } from './accountModule/account-details/account-details.component';
+import { AccountStatementComponent } from './accountModule/account-statement/account-statement.component';
+import { CreateAccountComponent } from './accountModule/create-account/create-account.component';
+import { CreateLoanComponent } from './loanModule/create-loan/create-loan.component';
 import { DashboardComponent } from './dashboard.component';
-import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
+import { FundTransferComponent } from './accountModule/fund-transfer/fund-transfer.component';
 import { HomeComponent } from './home/home.component';
-import { LoanDetailsComponent } from './loan-details/loan-details.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { LoanDetailsComponent } from './loanModule/loan-details/loan-details.component';
+import { ProfileComponent } from './profileModule/profile/profile.component';
+import { UpdateProfileComponent } from './profileModule/update-profile/update-profile.component';
 
 const dashboardRoutes: Routes = [
   {

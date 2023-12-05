@@ -7,8 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LoginService } from 'src/app/services/userServices/login.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../../services/login-module.service';
+
 
 @Component({
   selector: 'app-forget-password',
@@ -20,7 +21,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private loginModuleService: LoginModuleService,
+    private loginModuleService: LoginService,
     private router: Router,
     private notificationService: NotificationService,
     private SpinnerService: NgxSpinnerService

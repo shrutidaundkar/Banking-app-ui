@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { StatementService } from 'src/app/services/statement.service';
-import { AccountService } from 'src/app/services/account.service';
+import { StatementService } from 'src/app/services/accountServices/statement.service';
+import { AccountService } from 'src/app/services/accountServices/account.service';
 
 @Component({
   selector: 'app-account-statement',

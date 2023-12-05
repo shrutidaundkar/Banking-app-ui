@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
-import { LoanService } from 'src/app/services/loan.service';
+import { AccountService } from 'src/app/services/accountServices/account.service';
+import { LoanService } from 'src/app/services/accountServices/loan.service';
 
 @Component({
   selector: 'app-loan-details',

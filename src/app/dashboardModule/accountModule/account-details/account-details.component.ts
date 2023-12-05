@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
-import { StatementService } from 'src/app/services/statement.service';
+import { AccountService } from 'src/app/services/accountServices/account.service';
+import { StatementService } from 'src/app/services/accountServices/statement.service';
 import {
   FormBuilder,
   FormGroup,

@@ -6,9 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginModuleService } from '../../services/login-module.service';
 import { CustomValidator } from '../../custom.validator';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoginService } from 'src/app/services/userServices/login.service';
 
 @Component({
   selector: 'app-set-password',
@@ -20,7 +20,7 @@ export class SetPasswordComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private loginModuleService: LoginModuleService,
+    private loginModuleService: LoginService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService

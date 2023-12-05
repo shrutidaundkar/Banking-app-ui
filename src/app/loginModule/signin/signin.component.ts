@@ -7,8 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { LoginService } from 'src/app/services/userServices/login.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../../services/login-module.service';
+
 
 @Component({
   selector: 'app-signin',
@@ -23,7 +24,7 @@ export class SigninComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private loginModuleService: LoginModuleService,
+    private loginModuleService: LoginService,
     private router: Router,
     private notificationService: NotificationService
   ) {

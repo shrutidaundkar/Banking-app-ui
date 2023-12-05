@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import  { Observable } from 'rxjs'
 import  { HttpClient } from '@angular/common/http'
-import { ConfigService } from './config.service'
+import { ConfigService } from '../config.service'
 
 /**
  * Service for handling fund transfer-related operations.
@@ -9,7 +9,7 @@ import { ConfigService } from './config.service'
 @Injectable({
   providedIn: 'root'
 })
-export class FundtransferService {
+export class FundTransferService {
   constructor (private readonly http: HttpClient, private readonly config: ConfigService) {}
 
   /**

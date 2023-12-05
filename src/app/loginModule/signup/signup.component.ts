@@ -9,7 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoginModuleService } from '../../services/login-module.service';
+import { SignupService } from 'src/app/services/userServices/signup.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loginModuleService: LoginModuleService,
+    private signupService: SignupService,
     private router: Router,
     private notificationService: NotificationService,
     private SpinnerService: NgxSpinnerService
@@ -85,7 +86,7 @@ export class SignupComponent implements OnInit {
 
     console.log(userSaveData);
 
-    this.loginModuleService.saveUser(userSaveData).subscribe(
+    this.signupService.saveUser(userSaveData).subscribe(
       (response) => {
         this.SpinnerService.hide();
         if (response.statusCode == 201) {

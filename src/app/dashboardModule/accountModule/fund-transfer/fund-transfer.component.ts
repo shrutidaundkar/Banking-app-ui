@@ -5,11 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AccountService } from 'src/app/services/account.service';
-import { FundtransferService } from 'src/app/services/fundtransfer.service';
+import { AccountService } from 'src/app/services/accountServices/account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FundTransferService } from 'src/app/services/accountServices/fundTransfer.service';
 
 @Component({
   selector: 'app-fund-transfer',
@@ -23,7 +23,7 @@ export class FundTransferComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private fundtransferService: FundtransferService,
+    private fundTransferService: FundTransferService,
     private router: Router,
     private accountService: AccountService,
     private notificationService: NotificationService,
@@ -65,7 +65,7 @@ export class FundTransferComponent implements OnInit {
       this.checkZeroAmount = true;
     } else {
       this.SpinnerService.show();
-      this.fundtransferService.transfer(transferData).subscribe(
+      this.fundTransferService.transfer(transferData).subscribe(
         (response: any) => {
           if (response.statusCode == 201) {
             this.SpinnerService.hide();
@@ -101,7 +101,7 @@ export class FundTransferComponent implements OnInit {
     this.SpinnerService.show();
     var userId: number = Number(localStorage.getItem('userId'));
 
-    this.fundtransferService.getOTP(userId).subscribe((response) => {
+    this.fundTransferService.getOTP(userId).subscribe((response) => {
       this.SpinnerService.hide();
       if (response.statusCode == 201) {
         this.notificationService.createNotification(

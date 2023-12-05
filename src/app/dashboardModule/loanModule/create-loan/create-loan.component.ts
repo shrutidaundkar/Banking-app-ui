@@ -7,9 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
-import { LoanService } from 'src/app/services/loan.service';
+import { LoanService } from 'src/app/services/accountServices/loan.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AccountService } from 'src/app/services/account.service';
+import { AccountService } from 'src/app/services/accountServices/account.service';
 
 @Component({
   selector: 'app-create-loan',

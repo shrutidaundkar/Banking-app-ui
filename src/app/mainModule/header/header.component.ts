@@ -3,7 +3,7 @@ import  { OnInit } from '@angular/core'
 import  { Router } from '@angular/router'
 import  { NzNotificationService } from 'ng-zorro-antd/notification'
 import { Subject, Subscription } from 'rxjs'
-import  { LoginModuleService } from 'src/app/services/login-module.service'
+import { LoginService } from 'src/app/services/userServices/login.service'
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor (
     private readonly router: Router,
-    private readonly loginModuleService: LoginModuleService,
+    private readonly loginModuleService: LoginService,
     private readonly notification: NzNotificationService
   ) {}
 
