@@ -1,25 +1,16 @@
-<br />
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary" routerLink="../create-account">
-        Add Account
-      </button>
+  <div class=" d-flex justify-content-end m-1">
+    <div class="m-1">
+      <button class="btn btn-primary" routerLink="../create-account">Add Account</button>
     </div>
-    <div class="col">
-      <button
-        *ngIf="accounts !== null"
-        class="btn btn-success"
-        style="margin-left: 50%"
-        (click)="downloadPDF()"
-      >
-        <i class="fa fa-download"></i>
-        Download
+    <div class="m-1 text-right">
+      <button *ngIf="accounts !== null" class="btn btn-success" (click)="downloadPDF()">
+        <i class="fa fa-download"></i> Download
       </button>
     </div>
   </div>
-  <br />
-  <div class="row">
+
+  <div class="row ">
     <div class="card">
       <p-table [value]="accounts" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
@@ -40,10 +31,7 @@
         <ng-template pTemplate="body" let-account>
           <tr>
             <td>
-              <button
-                class="btn btn-outline-primary"
-                (click)="submitForm(account.accountId)"
-              >
+              <button class="btn btn-outline-primary" (click)="submitForm(account.accountId)">
                 {{ account.accountId }}
               </button>
             </td>
@@ -84,7 +72,7 @@
             <td>
               <span class="order-badge order-delivered">{{
                 statement.transactionStatus
-              }}</span>
+                }}</span>
             </td>
             <td>{{ statement.transactionDate }}</td>
             <td>{{ statement.description }}</td>
@@ -101,5 +89,3 @@
     </div>
   </div>
 </div>
-<br />
-<br />

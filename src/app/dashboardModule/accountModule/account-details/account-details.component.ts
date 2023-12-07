@@ -26,7 +26,7 @@ export class AccountDetailsComponent implements OnInit {
     filter: true,
   };
 
-  constructor(
+  constructor (
     private accountService: AccountService,
     private stmtService: StatementService
   ) {}

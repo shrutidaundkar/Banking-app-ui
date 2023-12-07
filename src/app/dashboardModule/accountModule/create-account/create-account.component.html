@@ -1,31 +1,17 @@
 <div class="container-fluid">
-  <div class="row" style="margin-left: 35%; margin-bottom: 20px">
+  <div class="row custom-row">
     <div class="col-md-6">
-      <div
-        class="card"
-        style="
-          width: 400px;
-          margin-top: 50px;
-          border-color: cadetblue;
-          border-width: 3px;
-          background-color: ghostwhite;
-        "
-      >
+      <div class="card custom-card">
         <article class="card-body">
-          <form [formGroup]="createAccountForm" class="mt-5">
-            <h2
-              class="text-primary text-center"
-              style="font-size: 30px; margin-bottom: 10%"
-            >
-              Create Account
-            </h2>
+          <form [formGroup]="createAccountForm" class="custom-form">
+            <h2 class="text-primary text-center custom-header">Create Account</h2>
             <div class="form-group row">
               <div class="form-group col-md-10">
-                <label style="margin-left: 10%; font-size: 17px"
+                <label class="custom-label"
                   >Account Type :</label
                 >
                 <select
-                  class="form-select"
+                  class="form-select m-4"
                   aria-label="Default select example"
                   formControlName="accountType"
                 >
@@ -48,20 +34,20 @@
               </div>
               <br />
               <div class="form-group col-md-10">
-                <label style="margin-left: 10%; font-size: 17px"
+                <label class="custom-label"
                   >Balance :</label
                 >
                 <input
                   type="number"
                   min="0"
                   oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
-                  class="form-control"
+                  class="form-control m-4"
                   formControlName="balance"
                   [class.is-invalid]="
                     getaccountFormControls.balance.invalid &&
                     getaccountFormControls.balance.touched
                   "
-                  placeholder="₹   Balance"
+                  placeholder="$   Balance"
                 />
                 <small
                   class="text-danger"
@@ -79,7 +65,7 @@
 
             <br />
             <div class="form-group row">
-              <div class="form-group col-md-6" id="buttons">
+              <div class="form-group text-center" id="buttons">
                 <button
                   type="submit"
                   (click)="submitForm()"

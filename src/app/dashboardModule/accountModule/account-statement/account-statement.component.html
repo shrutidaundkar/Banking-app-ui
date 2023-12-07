@@ -1,25 +1,10 @@
 <div class="container-fluid">
-  <div class="row" style="margin-left: 28%; margin-bottom: 20px">
+  <div class="row statement-form-row">
     <div class="col-md-6">
-      <div
-        class="card"
-        style="
-          width: 500px;
-          margin-top: 20px;
-          border-color: cadetblue;
-          border-width: 3px;
-          background-color: ghostwhite;
-        "
-      >
+      <div class="card statement-card">
         <article class="card-body">
-          <form [formGroup]="statementForm" class="mt-5">
-            <h2
-              class="text-primary text-center"
-              style="font-size: 25px; margin-bottom: 5%"
-            >
-              Account Statements
-            </h2>
-            <br />
+          <form [formGroup]="statementForm" class="statement-form">
+            <h2 class="text-primary text-center statement-header">Account Statements</h2>
             <div class="form-group row">
               <div class="form-group">
                 <select
@@ -47,7 +32,6 @@
                 </small>
               </div>
             </div>
-            <br />
             <div class="form-group row">
               <div class="form-group" id="buttons">
                 <button
