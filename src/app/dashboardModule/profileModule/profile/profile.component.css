@@ -12,3 +12,18 @@ h4 {
 #update {
   text-align: center;
 }
+.custom-container {
+  width: 60%;
+}
+
+.custom-card {
+  padding: 5%;
+  margin-top: 20px;
+  border-color: cadetblue;
+  border-width: 3px;
+  background-color: ghostwhite;
+}
+
+.custom-title {
+  font-size: 25px;
+}

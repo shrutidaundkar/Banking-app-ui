@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ProfileService } from 'src/app/services/userServices/profile.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private readonly notificationService : NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -63,8 +65,18 @@ export class ProfileComponent implements OnInit {
       )
       .subscribe((response) => {
         if (response.status === 200) {
+          this.notificationService.createNotification(
+                    'success',
+                    'Success',
+                    'Image Uploaded Successfully!'
+                  );
           this.message = 'Image uploaded successfully';
         } else {
+          this.notificationService.createNotification(
+                    'error',
+                    'Error',
+                    'Error Occured!'
+                  );
           this.message = 'Image not uploaded successfully';
         }
       });

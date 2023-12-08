@@ -1,14 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 UserCredImg">
-      <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+    <div class="col-md-6">
+      <img src="/assets/img/auth.jpg" class="auth-image" />
     </div>
-
     <div class="col-md-6">
       <div class="card">
         <article class="card-body">
-          <form [formGroup]="signinForm">
-            <h2 class="mb-3 text-primary" id="formHeading">Login</h2>
+          <form [formGroup]="signinForm" class="signin-form">
+            <h2 class="text-center">Login</h2>
             <div class="form-group row">
               <div class="form-group" id="email">
                 <input

@@ -31,3 +31,18 @@ p {
 select {
   font-size: 17px;
 }
+.custom-row {
+  margin-left: 20%;
+}
+
+.custom-card {
+  min-width: 500px;
+  margin-bottom: 20px;
+  border-color: cadetblue;
+  border-width: 3px;
+  background-color: ghostwhite;
+}
+
+.text-center {
+  font-size: 25px;
+}

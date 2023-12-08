@@ -1,24 +1,11 @@
-<br />
 <div class="container">
-  <div class="row" style="margin-left: 20%">
-    <div class="col-md-6">
-      <div
-        class="card"
-        style="
-          width: 600px;
-          margin-bottom: 20px;
-          border-color: cadetblue;
-          border-width: 3px;
-          background-color: ghostwhite;
-        "
-      >
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card custom-card">
         <article class="card-body">
-          <form [formGroup]="updateProfileForm" class="mt-5">
-            <h2 class="mb-3 text-primary">
-              <p class="text-center" style="font-size: 30px; margin-bottom: 5%">
-                Update Profile
-              </p>
-            </h2>
+          <form [formGroup]="updateProfileForm" class="update-form">
+            <h2 class="text-center custom-title">Update Profile</h2>
+
             <div class="form-group row">
               <div class="form-group col-md-6">
                 <label>Firstname :</label>
@@ -197,15 +184,15 @@
             </div>
 
             <br />
-            <div class="form-group row" style="margin-left: 35%">
-              <div class="form-group col-md-6" id="buttons">
+            <div class="form-group row">
+              <div class="d-flex justify-content-center" id="buttons">
                 <button
                   type="submit"
                   (click)="submitForm()"
                   [disabled]="
                     !(updateProfileForm.valid && updateProfileForm.dirty)
                   "
-                  class="btn btn-success"
+                  class="btn btn-success m-1"
                 >
                   Submit
                 </button>
@@ -213,8 +200,7 @@
                 <button
                   type="submit"
                   (click)="cancelForm()"
-                  class="btn btn-primary"
-                  style="margin-left: 10%"
+                  class="btn btn-primary m-1"
                 >
                   Reset
                 </button>

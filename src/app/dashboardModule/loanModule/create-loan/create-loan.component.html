@@ -1,21 +1,10 @@
-<br />
 <div class="container">
-  <div class="row" style="margin-left: 20%">
+  <div class="row custom-row">
     <div class="col-md-6">
-      <div
-        class="card"
-        style="
-          width: 700px;
-          margin-bottom: 20px;
-          border-color: cadetblue;
-          border-width: 3px;
-          background-color: ghostwhite;
-        "
-      >
+      <div class="card custom-card">
         <article class="card-body">
-          <h2 class="text-primary text-center" style="font-size: 25px">
-            Apply For Loan
-          </h2>
+          <h2 class="text-primary text-center">Apply For Loan</h2>
+
           <form [formGroup]="createLoanForm">
             <div class="form-group row">
               <div class="col-md-4">
@@ -137,7 +126,7 @@
                       <label>Monthly EMI: </label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ monthlyEMI | currency: "INR":"symbol" }}</p>
+                      <p>{{ monthlyEMI | currency : "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -145,7 +134,7 @@
                       <label>Principal Amount: </label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ amount | currency: "INR":"symbol" }}</p>
+                      <p>{{ amount | currency : "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -153,7 +142,7 @@
                       <label> Interest Amount:</label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ interestAmount | currency: "INR":"symbol" }}</p>
+                      <p>{{ interestAmount | currency : "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -162,35 +151,27 @@
                     </div>
                     <div class="col-md-6">
                       <p>
-                        {{ amount + interestAmount | currency: "INR":"symbol" }}
+                        {{
+                          amount + interestAmount | currency : "USD" : "symbol"
+                        }}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-5">
-                <!-- chart -->
-              </div>
             </div>
             <br />
-            <div class="form-group row" style="margin-left: 35%">
-              <div class="form-group col-md-6" id="buttons">
+            <div class="form-group row">
+              <div class="form-group d-flex justify-content-center">
                 <button
                   type="submit"
-                  [disabled]="!createLoanForm.valid"
+                   [disabled]="!createLoanForm.valid"
                   class="btn btn-success"
                   (click)="createLoan()"
                 >
                   Submit
                 </button>
-
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  style="margin-left: 10%"
-                >
-                  Reset
-                </button>
+                <button type="submit" class="btn btn-primary">Reset</button>
               </div>
             </div>
           </form>

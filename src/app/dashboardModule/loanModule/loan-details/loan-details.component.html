@@ -1,20 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <br />
-      <button class="btn btn-primary" routerLink="../create-loan">
-        Apply For Loan
-      </button>
+    <div class="col mt-2 d-flex justify-content-end">
+      <button class="btn btn-primary" routerLink="../create-loan">Apply For Loan</button>
     </div>
   </div>
-  <br />
   <div class="row">
-    <div class="card" style="margin-left: 3%; width: 95%">
+    <div class="card custom-card">
       <p-table [value]="accounts" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
-          <div class="flex align-items-center justify-content-between">
-            Loan Details
-          </div>
+          <h3>Loan Details</h3>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
@@ -31,10 +25,10 @@
         <ng-template pTemplate="body" let-account>
           <tr>
             <td>{{ account.loan.loanId }}</td>
-            <td>{{ account.loan.loanAmount | currency: "INR":"symbol" }}</td>
+            <td>{{ account.loan.loanAmount | currency: "USD":"symbol" }}</td>
             <td>{{ account.loan.loanPurpose }}</td>
             <td>
-              {{ account.loan.remainingAmount | currency: "INR":"symbol" }}
+              {{ account.loan.remainingAmount | currency: "USD":"symbol" }}
             </td>
             <td>{{ account.loan.interest }} %</td>
             <td>
@@ -43,7 +37,7 @@
               }}
               years)
             </td>
-            <td>{{ account.loan.monthlyEMI | currency: "INR":"symbol" }}</td>
+            <td>{{ account.loan.monthlyEMI | currency: "USD":"symbol" }}</td>
             <td>{{ account.accountId }}</td>
           </tr>
         </ng-template>

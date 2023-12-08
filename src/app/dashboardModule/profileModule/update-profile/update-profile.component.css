@@ -1,0 +1,13 @@
+.custom-card {
+  margin: 20px;
+  border-color: cadetblue;
+  border-width: 3px;
+  background-color: ghostwhite;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.custom-title {
+  font-size: 30px;
+  margin-bottom: 5%;
+}

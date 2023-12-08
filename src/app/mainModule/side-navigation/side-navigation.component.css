@@ -25,13 +25,16 @@
   color: #743f3f;
 }
 
-.main {
-  margin-left: 200px;
-}
 .sidenav svg {
   margin: 5px 0px 5px 5px;
 }
 
 .nav {
   padding-left: 16px;
+    display: flex;
+  align-items: center;
+}
+.nav i{
+  width: 25px; 
+  margin-right: 10px;
 }

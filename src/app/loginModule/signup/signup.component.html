@@ -1,13 +1,13 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-md-6 UserCredImg">
-      <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+    <div class="col-md-6">
+      <img src="/assets/img/auth.jpg" class="auth-image" />
     </div>
-    <div class="col-md-6 signUpForm">
-      <div class="card">
+    <div class="col-md-6">
+      <div class="card custom-card">
         <article class="card-body">
-          <form [formGroup]="signupForm">
-            <h2 class="mb-3 text-primary" id="formHeading">Sign Up</h2>
+          <form [formGroup]="signupForm" class="signup-form">
+            <h2 class="text-center">Sign Up</h2>
             <div class="form-group row">
               <div class="form-group col-md-6">
                 <label>Firstname :</label>
