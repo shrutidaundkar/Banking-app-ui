@@ -1,84 +1,84 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { LoginService } from 'src/app/services/userServices/login.service';
-import { NotificationService } from 'src/app/services/notification.service';
+import { Component } from '@angular/core'
+import type { OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { Subject } from 'rxjs'
+import { LoginService } from 'src/app/services/userServices/login.service'
+import { NotificationService } from 'src/app/services/notification.service'
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+  styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  signinForm: FormGroup;
-  message: String = '';
-  authListner: Subject<boolean> = new Subject();
-  inputType: String = 'password';
+  signinForm: FormGroup
+  message: string = ''
+  authListner = new Subject<boolean>()
+  inputType: string = 'password'
 
-  constructor(
+  constructor (
     fb: FormBuilder,
-    private loginModuleService: LoginService,
-    private router: Router,
-    private notificationService: NotificationService,
+    private readonly loginModuleService: LoginService,
+    private readonly router: Router,
+    private readonly notificationService: NotificationService
   ) {
     this.signinForm = fb.group({
       email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-    });
+      password: new FormControl('', [Validators.required])
+    })
   }
 
-  showPassword(event: any): void {
-    event.target.checked
+  showPassword (event: any): void {
+    event.target.checked === true
       ? (this.inputType = 'text')
-      : (this.inputType = 'password');
+      : (this.inputType = 'password')
   }
 
-  get getSigninFormControls() {
-    return this.signinForm.controls;
+  get getSigninFormControls (): any {
+    return this.signinForm.controls
   }
 
-  ngOnInit(): void {
-    this.authListner = this.loginModuleService.getAuthListner();
+  ngOnInit (): void {
+    this.authListner = this.loginModuleService.getAuthListner()
   }
 
-  submitForm() {
+  submitForm (): void {
     const userLoginData = {
       email: this.signinForm.get('email')?.value,
-      password: this.signinForm.get('password')?.value,
-    };
+      password: this.signinForm.get('password')?.value
+    }
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        if (response.message == 'Login Successful') {
-          localStorage.setItem('userId', response.statusCode);
-          this.router.navigate(['/dashboard/home']);
-          this.authListner.next(true);
+        if (response.message === 'Login Successful') {
+          localStorage.setItem('userId', response.statusCode)
+          this.router.navigate(['/dashboard/home']).then(() => {
+            console.log('Registration Successful')
+          }).catch(() => {
+            console.log('Error Occured')
+          })
+          this.authListner.next(true)
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message,
-          );
-        } else if (response.statusCode == 400) {
+            response.message
+          )
+        } else if (response.statusCode === 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message,
-          );
+            response.message
+          )
         }
       },
       (error: any) => {
-        console.log(error);
-      },
-    );
+        console.log(error)
+      }
+    )
   }
 
-  cancelForm() {
-    this.signinForm.reset();
+  cancelForm (): void {
+    this.signinForm.reset()
   }
 }

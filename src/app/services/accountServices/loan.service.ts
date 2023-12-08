@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config.service';
+import { Injectable } from '@angular/core'
+import type { Observable } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { ConfigService } from '../config.service'
 
 /**
  * Service for handling loan-related operations.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoanService {
-  constructor(
+  constructor (
     private readonly http: HttpClient,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService
   ) {}
 
   /**
@@ -20,8 +20,8 @@ export class LoanService {
    * @param data The loan data to be created.
    * @returns An observable with the response.
    */
-  createLoan(data: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/create-loan`, data);
+  createLoan (data: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/create-loan`, data)
   }
 
   /**
@@ -29,8 +29,8 @@ export class LoanService {
    * @param userId The ID of the user.
    * @returns An observable with the loan data.
    */
-  getAllLoans(userId: any): Observable<any> {
-    return this.http.get(`${this.config.getBaseUrl()}/all-loans/${userId}`);
+  getAllLoans (userId: any): Observable<any> {
+    return this.http.get(`${this.config.getBaseUrl()}/all-loans/${userId}`)
   }
 
   /**
@@ -39,9 +39,9 @@ export class LoanService {
    * @param accountId The account ID to check.
    * @returns An observable with the check result.
    */
-  checkAccountNo(userId: any, accountId: any): Observable<any> {
+  checkAccountNo (userId: any, accountId: any): Observable<any> {
     return this.http.get(
-      `${this.config.getBaseUrl()}/check-account-no/${userId}/${accountId}`,
-    );
+      `${this.config.getBaseUrl()}/check-account-no/${userId}/${accountId}`
+    )
   }
 }

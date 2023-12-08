@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config.service';
+import { Injectable } from '@angular/core'
+import type { Observable } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { ConfigService } from '../config.service'
 
 /**
  * Service for handling statement-related operations.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class StatementService {
-  constructor(
+  constructor (
     private readonly http: HttpClient,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService
   ) {}
 
   /**
@@ -20,9 +20,9 @@ export class StatementService {
    * @param fromAccountId The ID of the account to fetch statements for.
    * @returns An observable with the statement data.
    */
-  getStatements(fromAccountId: any): Observable<any> {
+  getStatements (fromAccountId: any): Observable<any> {
     return this.http.get(
-      `${this.config.getBaseUrl()}/history/${fromAccountId}`,
-    );
+      `${this.config.getBaseUrl()}/history/${fromAccountId}`
+    )
   }
 }

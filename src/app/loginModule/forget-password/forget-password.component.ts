@@ -1,74 +1,74 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { LoginService } from 'src/app/services/userServices/login.service';
-import { NotificationService } from 'src/app/services/notification.service';
+import { Component } from '@angular/core'
+import type { OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { NgxSpinnerService } from 'ngx-spinner'
+import { NotificationService } from 'src/app/services/notification.service'
+import { LoginService } from 'src/app/services/userServices/login.service'
 
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
-  styleUrls: ['./forget-password.component.css'],
+  styleUrls: ['./forget-password.component.css']
 })
 export class ForgetPasswordComponent implements OnInit {
-  forgetpassForm: FormGroup;
+  forgetpassForm: FormGroup
 
-  constructor(
+  constructor (
     fb: FormBuilder,
-    private loginModuleService: LoginService,
-    private router: Router,
-    private notificationService: NotificationService,
-    private SpinnerService: NgxSpinnerService,
+    private readonly loginModuleService: LoginService,
+    private readonly router: Router,
+    private readonly notificationService: NotificationService,
+    private readonly SpinnerService: NgxSpinnerService
   ) {
     this.forgetpassForm = fb.group({
-      email: new FormControl('', [Validators.required]),
-    });
+      email: new FormControl('', [Validators.required])
+    })
   }
 
-  get getformControl() {
-    return this.forgetpassForm.controls;
+  get getformControl (): FormGroup['controls'] {
+    return this.forgetpassForm.controls
   }
 
-  ngOnInit(): void {
-    console.log('Forget-password module');
+  ngOnInit (): void {
+    console.log('Forget-password module')
   }
 
-  submitForm() {
-    this.SpinnerService.show();
+  submitForm (): void {
+    this.SpinnerService.show()
     const data = {
-      email: this.forgetpassForm.get('email')?.value,
-    };
+      email: this.forgetpassForm.get('email')?.value
+    }
 
     this.loginModuleService.forgetPassword(data).subscribe(
       (response) => {
-        this.SpinnerService.hide();
-        if (response.statusCode == 201) {
+        this.SpinnerService.hide()
+        if (response.statusCode === 201) {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message,
-          );
-          this.router.navigate(['/login']);
-        } else if (response.statusCode == 400) {
+            response.message
+          )
+          this.router.navigate(['/login']).then(() => {
+            console.log('Registration Successful')
+          }).catch(() => {
+            console.log('Error Occured')
+          })
+        } else if (response.statusCode === 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message,
-          );
+            response.message
+          )
         }
       },
       (error: any) => {
-        console.log(error);
-      },
-    );
+        console.log(error)
+      }
+    )
   }
 
-  cancelForm() {
-    this.forgetpassForm.reset();
+  cancelForm (): void {
+    this.forgetpassForm.reset()
   }
 }

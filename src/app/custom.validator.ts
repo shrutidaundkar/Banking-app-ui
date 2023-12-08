@@ -1,19 +1,19 @@
-import { FormGroup } from '@angular/forms';
+import type { FormGroup } from '@angular/forms'
 
-export function CustomValidator(
+export function CustomValidator (
   controlName: string,
-  matchingControlName: string,
+  matchingControlName: string
 ) {
   return (formGroup: FormGroup) => {
-    const control = formGroup.controls[controlName];
-    const matchingControl = formGroup.controls[matchingControlName];
-    if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
-      return;
+    const control = formGroup.controls[controlName]
+    const matchingControl = formGroup.controls[matchingControlName]
+    if ((matchingControl.errors != null) && matchingControl.errors.confirmedValidator !== null) {
+      return
     }
     if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({ customValidator: true });
+      matchingControl.setErrors({ customValidator: true })
     } else {
-      matchingControl.setErrors(null);
+      matchingControl.setErrors(null)
     }
-  };
+  }
 }

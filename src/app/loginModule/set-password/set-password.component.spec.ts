@@ -1,24 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SetPasswordComponent } from './set-password.component';
+import type { ComponentFixture } from '@angular/core/testing'
+import { TestBed } from '@angular/core/testing'
+import { SetPasswordComponent } from './set-password.component'
 
 describe('SetPasswordComponent', () => {
-  let component: SetPasswordComponent;
-  let fixture: ComponentFixture<SetPasswordComponent>;
+  let component: SetPasswordComponent
+  let fixture: ComponentFixture<SetPasswordComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SetPasswordComponent],
-    }).compileComponents();
-  });
+      declarations: [SetPasswordComponent]
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SetPasswordComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(SetPasswordComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Injectable } from '@angular/core'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 /**
  * Service for creating notifications using NgZorro Ant Design.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class NotificationService {
-  constructor(private readonly notification: NzNotificationService) {}
+  constructor (private readonly notification: NzNotificationService) {}
 
   /**
    * Create and display a notification.
@@ -16,11 +16,11 @@ export class NotificationService {
    * @param title The title of the notification.
    * @param message The message content of the notification.
    */
-  createNotification(type: string, title: string, message: string): void {
+  createNotification (type: string, title: string, message: string): void {
     this.notification.create(type, title, message, {
       nzStyle: {
-        marginTop: '50px',
-      },
-    });
+        marginTop: '50px'
+      }
+    })
   }
 }

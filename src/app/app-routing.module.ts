@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
-import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
-import { SigninComponent } from './loginModule/signin/signin.component';
-import { SignupComponent } from './loginModule/signup/signup.component';
-import { VerifyEmailComponent } from './loginModule/verify-email/verify-email.component';
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import type { Routes } from '@angular/router'
+import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component'
+import { SetPasswordComponent } from './loginModule/set-password/set-password.component'
+import { SigninComponent } from './loginModule/signin/signin.component'
+import { SignupComponent } from './loginModule/signup/signup.component'
+import { VerifyEmailComponent } from './loginModule/verify-email/verify-email.component'
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -15,16 +16,16 @@ const routes: Routes = [
   { path: 'reset-password/:token', component: SetPasswordComponent },
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import(`src/app/dashboardModule/dashboard.module`).then(
-        (m) => m.DashboardModule,
-      ),
+    loadChildren: async () =>
+      await import('src/app/dashboardModule/dashboard.module').then(
+        (m) => m.DashboardModule
+      )
   },
-  { path: '**', component: SigninComponent },
-];
+  { path: '**', component: SigninComponent }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

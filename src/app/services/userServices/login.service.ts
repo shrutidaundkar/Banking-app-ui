@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config.service';
+import { Injectable } from '@angular/core'
+import type { Observable } from 'rxjs'
+import { Subject } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { ConfigService } from '../config.service'
 
 /**
  * Service to handle login and authentication related operations.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoginService {
   /**
    * Subject to broadcast authentication status changes.
    */
-  authListner = new Subject<boolean>();
+  authListner = new Subject<boolean>()
 
   /**
    * Constructor to inject dependencies.
@@ -21,9 +22,9 @@ export class LoginService {
    * @param http The HttpClient for making HTTP requests.
    * @param config The ConfigService to access application configuration settings.
    */
-  constructor(
-    private http: HttpClient,
-    private readonly config: ConfigService,
+  constructor (
+    private readonly http: HttpClient,
+    private readonly config: ConfigService
   ) {}
 
   /**
@@ -31,8 +32,8 @@ export class LoginService {
    * @param user The user credentials for login.
    * @returns An Observable of the HTTP response.
    */
-  loginUser(user: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/login/`, user);
+  loginUser (user: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/login/`, user)
   }
 
   /**
@@ -40,8 +41,8 @@ export class LoginService {
    * @param data The user data for password recovery.
    * @returns An Observable of the HTTP response.
    */
-  forgetPassword(data: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/forgot-password`, data);
+  forgetPassword (data: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/forgot-password`, data)
   }
 
   /**
@@ -49,8 +50,8 @@ export class LoginService {
    * @param data The data required for password reset.
    * @returns An Observable of the HTTP response.
    */
-  resetPassword(data: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/reset-password`, data);
+  resetPassword (data: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/reset-password`, data)
   }
 
   /**
@@ -58,16 +59,16 @@ export class LoginService {
    * @param data The data required for email verification.
    * @returns An Observable of the HTTP response.
    */
-  verifyEmail(data: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/verify/`, data);
+  verifyEmail (data: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/verify/`, data)
   }
 
   /**
    * Retrieves the authentication listener.
    * @returns The authentication listener Subject.
    */
-  getAuthListner() {
-    return this.authListner;
+  getAuthListner (): any {
+    return this.authListner
   }
 
   /**
@@ -75,7 +76,7 @@ export class LoginService {
    * Useful for subscribing to authentication status changes.
    * @returns An Observable of the authentication status.
    */
-  getAuthListnerStatus() {
-    return this.authListner.asObservable();
+  getAuthListnerStatus (): any {
+    return this.authListner.asObservable()
   }
 }

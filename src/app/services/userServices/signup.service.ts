@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { ConfigService } from '../config.service';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { ConfigService } from '../config.service'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
 /**
  * Service for handling user sign-up related operations.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SignupService {
   /**
@@ -14,9 +14,9 @@ export class SignupService {
    * @param http The HttpClient for making HTTP requests.
    * @param config The ConfigService to access application configuration settings.
    */
-  constructor(
-    private http: HttpClient,
-    private readonly config: ConfigService,
+  constructor (
+    private readonly http: HttpClient,
+    private readonly config: ConfigService
   ) {}
 
   /**
@@ -24,8 +24,8 @@ export class SignupService {
    * @param user The user data to be saved.
    * @returns An Observable of the HTTP response.
    */
-  saveUser(user: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/save`, user);
+  saveUser (user: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/save`, user)
   }
 
   /**
@@ -33,7 +33,7 @@ export class SignupService {
    * @param data The data required for email verification.
    * @returns An Observable of the HTTP response.
    */
-  verifyEmail(data: any): Observable<any> {
-    return this.http.post(`${this.config.getBaseUrl()}/verify/`, data);
+  verifyEmail (data: any): Observable<any> {
+    return this.http.post(`${this.config.getBaseUrl()}/verify/`, data)
   }
 }
