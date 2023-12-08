@@ -1,9 +1,12 @@
-input, select {
+input,
+select {
   margin: 0 20px 10px 30px;
   padding: 10px;
 }
 
-p, .ag-header-group-cell-label, .ag-header-cell-label {
+p,
+.ag-header-group-cell-label,
+.ag-header-cell-label {
   margin-left: 30px;
   background: aqua;
   font-weight: bold;
@@ -13,7 +16,8 @@ p, .ag-header-group-cell-label, .ag-header-cell-label {
   margin-left: 90px;
 }
 
-.ag-header-group-cell, .ag-header-cell {
+.ag-header-group-cell,
+.ag-header-cell {
   background: aquamarine;
   font-weight: bold;
 }
@@ -33,10 +37,10 @@ p, .ag-header-group-cell-label, .ag-header-cell-label {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
 }
 
 .order-badge.order-delivered {
-  background: #C8E6C9;
+  background: #c8e6c9;
   color: #256029;
 }

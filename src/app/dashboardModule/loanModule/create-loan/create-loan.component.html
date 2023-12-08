@@ -126,7 +126,7 @@
                       <label>Monthly EMI: </label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ monthlyEMI | currency : "USD" : "symbol" }}</p>
+                      <p>{{ monthlyEMI | currency: "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -134,7 +134,7 @@
                       <label>Principal Amount: </label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ amount | currency : "USD" : "symbol" }}</p>
+                      <p>{{ amount | currency: "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -142,7 +142,7 @@
                       <label> Interest Amount:</label>
                     </div>
                     <div class="col-md-6">
-                      <p>{{ interestAmount | currency : "USD" : "symbol" }}</p>
+                      <p>{{ interestAmount | currency: "USD" : "symbol" }}</p>
                     </div>
                   </div>
                   <div class="rates">
@@ -152,7 +152,7 @@
                     <div class="col-md-6">
                       <p>
                         {{
-                          amount + interestAmount | currency : "USD" : "symbol"
+                          amount + interestAmount | currency: "USD" : "symbol"
                         }}
                       </p>
                     </div>
@@ -165,7 +165,7 @@
               <div class="form-group d-flex justify-content-center">
                 <button
                   type="submit"
-                   [disabled]="!createLoanForm.valid"
+                  [disabled]="!createLoanForm.valid"
                   class="btn btn-success"
                   (click)="createLoan()"
                 >

@@ -1,38 +1,35 @@
+.custom-row {
+  margin-left: 35%;
+  margin-bottom: 20px;
+}
 
-     .custom-row {
-        margin-left: 35%;
-        margin-bottom: 20px;
-      }
-      
-      .custom-card {
-        width: 400px;
-        margin-top: 50px;
-        border-color: cadetblue;
-        border-width: 3px;
-        background-color: ghostwhite;
-      }
-      
-      .custom-header {
-        font-size: 30px; 
-        margin-bottom: 10%;
-      }
-      
-      .custom-form {
-        margin-top: 5%;
-      }
-      
-      .custom-label {
-        margin-left: 10%; 
-        font-size: 17px;
-      }
-      
-      .custom-input {
-        margin-left: 10%;
-        
-      }
-      
-      #buttons .btn {
-        margin:0 5px 0 5px;
-        justify-self: center;
-      }
-      
+.custom-card {
+  width: 400px;
+  margin-top: 50px;
+  border-color: cadetblue;
+  border-width: 3px;
+  background-color: ghostwhite;
+}
+
+.custom-header {
+  font-size: 30px;
+  margin-bottom: 10%;
+}
+
+.custom-form {
+  margin-top: 5%;
+}
+
+.custom-label {
+  margin-left: 10%;
+  font-size: 17px;
+}
+
+.custom-input {
+  margin-left: 10%;
+}
+
+#buttons .btn {
+  margin: 0 5px 0 5px;
+  justify-self: center;
+}

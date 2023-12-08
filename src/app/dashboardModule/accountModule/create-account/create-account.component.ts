@@ -25,7 +25,7 @@ export class CreateAccountComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private notificationService: NotificationService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
   ) {
     this.createAccountForm = fb.group({
       accountType: new FormControl('', [Validators.required]),
@@ -38,7 +38,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Account Component")
+    console.log('Account Component');
   }
 
   submitForm() {
@@ -57,20 +57,20 @@ export class CreateAccountComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message
+            response.message,
           );
           this.router.navigate(['/dashboard/account-details']);
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            response.message,
           );
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 

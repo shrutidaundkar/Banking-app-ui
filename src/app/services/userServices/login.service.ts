@@ -5,12 +5,11 @@ import { ConfigService } from '../config.service';
 
 /**
  * Service to handle login and authentication related operations.
-*/
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  
   /**
    * Subject to broadcast authentication status changes.
    */
@@ -18,12 +17,15 @@ export class LoginService {
 
   /**
    * Constructor to inject dependencies.
-   * 
+   *
    * @param http The HttpClient for making HTTP requests.
    * @param config The ConfigService to access application configuration settings.
    */
-  constructor(private http: HttpClient, private readonly config: ConfigService) {}
- 
+  constructor(
+    private http: HttpClient,
+    private readonly config: ConfigService,
+  ) {}
+
   /**
    * Logs in a user.
    * @param user The user credentials for login.
@@ -34,7 +36,7 @@ export class LoginService {
   }
 
   /**
-   * Initiates the forgot password process for a user. 
+   * Initiates the forgot password process for a user.
    * @param data The user data for password recovery.
    * @returns An Observable of the HTTP response.
    */

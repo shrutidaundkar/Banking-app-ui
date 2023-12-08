@@ -44,7 +44,7 @@ registerLocaleData(en);
     ForgetPasswordComponent,
     SetPasswordComponent,
     SideNavigationComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,

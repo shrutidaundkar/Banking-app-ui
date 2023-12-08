@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import(`src/app/dashboardModule/dashboard.module`).then(
-        (m) => m.DashboardModule
+        (m) => m.DashboardModule,
       ),
   },
   { path: '**', component: SigninComponent },

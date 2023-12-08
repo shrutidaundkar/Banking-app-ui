@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private httpClient: HttpClient,
-    private readonly notificationService : NotificationService
+    private readonly notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     uploadImageData.append(
       'imageFile',
       this.selectedFile,
-      this.selectedFile.name
+      this.selectedFile.name,
     );
     const userId: number = Number(localStorage.getItem('userId'));
     //Make a call to the Spring Boot Application to save the image
@@ -61,22 +61,22 @@ export class ProfileComponent implements OnInit {
         uploadImageData,
         {
           observe: 'response',
-        }
+        },
       )
       .subscribe((response) => {
         if (response.status === 200) {
           this.notificationService.createNotification(
-                    'success',
-                    'Success',
-                    'Image Uploaded Successfully!'
-                  );
+            'success',
+            'Success',
+            'Image Uploaded Successfully!',
+          );
           this.message = 'Image uploaded successfully';
         } else {
           this.notificationService.createNotification(
-                    'error',
-                    'Error',
-                    'Error Occured!'
-                  );
+            'error',
+            'Error',
+            'Error Occured!',
+          );
           this.message = 'Image not uploaded successfully';
         }
       });
@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
       },
       (error) => {
         console.log('getPDF error: ', error);
-      }
+      },
     );
   }
 }

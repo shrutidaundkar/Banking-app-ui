@@ -11,7 +11,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SignupService } from 'src/app/services/userServices/signup.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -25,7 +24,7 @@ export class SignupComponent implements OnInit {
     private signupService: SignupService,
     private router: Router,
     private notificationService: NotificationService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
   ) {
     this.signupForm = this.fb.group({
       firstname: new FormControl('', [Validators.required]),
@@ -57,7 +56,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Signup Component")
+    console.log('Signup Component');
   }
 
   formatLabel(value: number) {
@@ -93,21 +92,21 @@ export class SignupComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message
+            response.message,
           );
           this.router.navigate(['/login']);
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            response.message,
           );
           this.router.navigate(['/signup']);
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 

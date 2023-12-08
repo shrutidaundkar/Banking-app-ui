@@ -31,10 +31,10 @@
 
 .nav {
   padding-left: 16px;
-    display: flex;
+  display: flex;
   align-items: center;
 }
-.nav i{
-  width: 25px; 
+.nav i {
+  width: 25px;
   margin-right: 10px;
 }

@@ -26,9 +26,9 @@ export class AccountDetailsComponent implements OnInit {
     filter: true,
   };
 
-  constructor (
+  constructor(
     private accountService: AccountService,
-    private stmtService: StatementService
+    private stmtService: StatementService,
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class AccountDetailsComponent implements OnInit {
       },
       (error) => {
         console.log('getPDF error: ', error);
-      }
+      },
     );
   }
 

@@ -27,7 +27,7 @@ export class FundTransferComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private notificationService: NotificationService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
   ) {
     this.fundTransferForm = fb.group({
       fromAccount: new FormControl('', Validators.required),
@@ -72,7 +72,7 @@ export class FundTransferComponent implements OnInit {
             this.notificationService.createNotification(
               'success',
               'Success',
-              response.message
+              response.message,
             );
             this.router.navigate(['/dashboard/account-details']);
           } else if (response.statusCode == 400) {
@@ -81,14 +81,14 @@ export class FundTransferComponent implements OnInit {
               this.notificationService.createNotification(
                 'error',
                 'Error',
-                response.message
+                response.message,
               );
             }, 3000);
           }
         },
         (error: any) => {
           console.log(error);
-        }
+        },
       );
     }
   }
@@ -107,13 +107,13 @@ export class FundTransferComponent implements OnInit {
         this.notificationService.createNotification(
           'success',
           'Success',
-          response.message
+          response.message,
         );
       } else if (response.statusCode == 400) {
         this.notificationService.createNotification(
           'error',
           'Error',
-          response.message
+          response.message,
         );
       }
     });

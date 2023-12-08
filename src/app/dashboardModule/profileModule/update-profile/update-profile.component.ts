@@ -22,7 +22,7 @@ export class UpdateProfileComponent implements OnInit {
     private fb: FormBuilder,
     private profileService: ProfileService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     this.updateProfileForm = this.fb.group({
       firstname: new FormControl('', [Validators.required]),
@@ -54,7 +54,7 @@ export class UpdateProfileComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }
+      },
     );
   }
 
@@ -103,20 +103,20 @@ export class UpdateProfileComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            'Profile Updated Successfully'
+            'Profile Updated Successfully',
           );
           this.router.navigate(['/dashboard/profile']);
         } else if (response == null) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            'Profile Update Unsuccessful'
+            'Profile Update Unsuccessful',
           );
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 

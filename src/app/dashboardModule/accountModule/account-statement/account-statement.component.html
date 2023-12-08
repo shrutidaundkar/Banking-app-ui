@@ -4,7 +4,9 @@
       <div class="card statement-card">
         <article class="card-body">
           <form [formGroup]="statementForm" class="statement-form">
-            <h2 class="text-primary text-center statement-header">Account Statements</h2>
+            <h2 class="text-primary text-center statement-header">
+              Account Statements
+            </h2>
             <div class="form-group row">
               <div class="form-group">
                 <select
@@ -208,7 +210,7 @@
           <span class="image-text">{{ statement.toAccount }}</span>
         </td>
         <td>
-          {{ statement.amount | currency: "INR":"symbol" }}
+          {{ statement.amount | currency: "INR" : "symbol" }}
         </td>
         <td>
           <span [class]="'statement-badge status-' + statement.status">{{

@@ -23,7 +23,7 @@ export class SetPasswordComponent implements OnInit {
     private loginModuleService: LoginService,
     private router: Router,
     private route: ActivatedRoute,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     this.setPasswordForm = fb.group(
       {
@@ -35,7 +35,7 @@ export class SetPasswordComponent implements OnInit {
       },
       {
         validator: CustomValidator('newPassword', 'confirmPassword'),
-      }
+      },
     );
   }
 
@@ -44,7 +44,7 @@ export class SetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Password Component")
+    console.log('Password Component');
   }
 
   submitForm() {
@@ -60,20 +60,20 @@ export class SetPasswordComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message
+            response.message,
           );
           this.router.navigate(['/login']);
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            response.message,
           );
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 

@@ -6,7 +6,7 @@
 }
 .custom-card {
   margin: 10px 5px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .bi {
@@ -20,9 +20,9 @@
   color: blue;
   font-weight: bold;
 }
-.card-title{
+.card-title {
   display: inline-block;
-  margin: 0 0 0 10px ;
+  margin: 0 0 0 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }

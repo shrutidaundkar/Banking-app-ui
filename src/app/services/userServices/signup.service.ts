@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
  * Service for handling user sign-up related operations.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignupService {
   /**
@@ -14,8 +14,11 @@ export class SignupService {
    * @param http The HttpClient for making HTTP requests.
    * @param config The ConfigService to access application configuration settings.
    */
-  constructor(private http: HttpClient, private readonly config: ConfigService) { }
-  
+  constructor(
+    private http: HttpClient,
+    private readonly config: ConfigService,
+  ) {}
+
   /**
    * Saves a new user to the server.
    * @param user The user data to be saved.
@@ -33,5 +36,4 @@ export class SignupService {
   verifyEmail(data: any): Observable<any> {
     return this.http.post(`${this.config.getBaseUrl()}/verify/`, data);
   }
-  
 }

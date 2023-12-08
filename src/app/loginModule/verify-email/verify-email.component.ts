@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SignupService } from 'src/app/services/userServices/signup.service';
 
-
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
@@ -14,7 +13,7 @@ export class VerifyEmailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private signupService: SignupService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -33,19 +32,19 @@ export class VerifyEmailComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message
+            response.message,
           );
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            response.message,
           );
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 }

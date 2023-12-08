@@ -12,7 +12,7 @@ export class LoanDetailsComponent implements OnInit {
 
   constructor(
     private loanService: LoanService,
-    private accountService: AccountService
+    private accountService: AccountService,
   ) {}
 
   ngOnInit(): void {

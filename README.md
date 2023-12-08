@@ -32,12 +32,15 @@ After all the dependencies have been installed we can go ahead and start the dev
 ```sh
 ng serve
 ```
+
 ## Linting
+
 To add linter to the project add a dependancy using `ng add @angular-eslint/schematics` then you can verify the code by running
 
 ```sh
 npm run lint
 ```
+
 Verify the deployment by navigating to your server address in your preferred browser.
 
 ```sh

@@ -32,7 +32,7 @@ export class CreateLoanComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private notificationService: NotificationService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
   ) {
     this.createLoanForm = new FormGroup({
       loanPurpose: new FormControl('', [Validators.required]),
@@ -128,33 +128,33 @@ export class CreateLoanComponent implements OnInit {
                   this.notificationService.createNotification(
                     'success',
                     'Success',
-                    response.message
+                    response.message,
                   );
                   this.router.navigate(['/dashboard/loan-details']);
                 } else if (response.statusCode == 400) {
                   this.notificationService.createNotification(
                     'error',
                     'Error',
-                    response.message
+                    response.message,
                   );
                   this.router.navigate(['/create-loan']);
                 }
               },
               (error: any) => {
                 console.log(error);
-              }
+              },
             );
           } else if (response.statusCode == 400) {
             this.notificationService.createNotification(
               'error',
               'Error',
-              response.message
+              response.message,
             );
           }
         },
         (error: any) => {
           console.log(error);
-        }
+        },
       );
   }
 

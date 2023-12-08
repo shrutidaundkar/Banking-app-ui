@@ -29,7 +29,7 @@ export class AccountStatementComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private statementService: StatementService,
-    private accountService: AccountService
+    private accountService: AccountService,
   ) {
     this.statementForm = fb.group({
       fromAccount: new FormControl('', [Validators.required]),
@@ -55,7 +55,7 @@ export class AccountStatementComponent implements OnInit {
           this.statements.forEach(
             (i: { transactionDate: string | number | Date }) => {
               i.transactionDate = new Date(i.transactionDate);
-            }
+            },
           );
           console.log('statement data', this.statements);
         });

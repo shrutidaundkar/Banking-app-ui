@@ -10,7 +10,6 @@ import { Subject } from 'rxjs';
 import { LoginService } from 'src/app/services/userServices/login.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
-
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -26,7 +25,7 @@ export class SigninComponent implements OnInit {
     fb: FormBuilder,
     private loginModuleService: LoginService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     this.signinForm = fb.group({
       email: new FormControl('', [Validators.required]),
@@ -63,19 +62,19 @@ export class SigninComponent implements OnInit {
           this.notificationService.createNotification(
             'success',
             'Success',
-            response.message
+            response.message,
           );
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            response.message,
           );
         }
       },
       (error: any) => {
         console.log(error);
-      }
+      },
     );
   }
 
