@@ -3,9 +3,12 @@ import type { OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { NgxSpinnerService } from 'ngx-spinner'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { SignupService } from 'src/app/services/userServices/signup.service'
 
+/**
+ * Component for handling user registration.
+ */
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -59,6 +62,9 @@ export class SignupComponent implements OnInit {
     return new Date().toISOString().split('T')[0]
   }
 
+  /**
+   * Submits the signup form and navigates to the login page if successful.
+   */
   submitForm (): any {
     this.SpinnerService.show()
     const userSaveData = {
@@ -117,6 +123,9 @@ export class SignupComponent implements OnInit {
     )
   }
 
+  /**
+   * Resets the form.
+   */
   cancelForm (): void {
     this.signupForm.reset()
   }

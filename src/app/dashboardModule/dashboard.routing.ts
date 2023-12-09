@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import type { Routes } from '@angular/router'
-import { AuthGuard } from '../services/auth.guard'
+import { AuthGuard } from '../services/commonServices/auth.guard'
 import { AccountDetailsComponent } from './accountModule/account-details/account-details.component'
 import { AccountStatementComponent } from './accountModule/account-statement/account-statement.component'
 import { CreateAccountComponent } from './accountModule/create-account/create-account.component'

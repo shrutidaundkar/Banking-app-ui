@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import type { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { ConfigService } from '../config.service'
+import { ConfigService } from '../commonServices/config.service'
 
 /**
  * Service for handling statement-related operations.

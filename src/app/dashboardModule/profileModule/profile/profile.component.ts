@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http'
 import { Component } from '@angular/core'
 import type { OnInit } from '@angular/core'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { ProfileService } from 'src/app/services/userServices/profile.service'
 
+/**
+ * Component for displaying and managing the user's profile.
+ */
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -43,7 +46,9 @@ export class ProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0]
   }
 
-  // Gets called when the user clicks on submit to upload the image
+  /**
+   * Gets called when the user clicks on submit to upload the image
+   */
   onUpload (): void {
     console.log(this.selectedFile)
 
@@ -80,13 +85,22 @@ export class ProfileComponent implements OnInit {
           )
           this.message = 'Image not uploaded successfully'
         }
+      }, (error) => {
+        console.log(error.message)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Image not uploaded!'
+        )
       })
   }
 
-  // Gets called when the user clicks on retieve image button to get the image from back end
+  /**
+   * Retrieves the image file from the server.
+   */
   getImage (): void {
     const userId: number = Number(localStorage.getItem('userId'))
-    // Make a call to Sprinf Boot to get the Image Bytes.
+    // Make a call to Spring Boot to get the Image Bytes.
 
     this.profileService.getUserFile(userId).subscribe(
       (data: Blob) => {
@@ -103,6 +117,11 @@ export class ProfileComponent implements OnInit {
       },
       (error) => {
         console.log('getPDF error: ', error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Image not retrieved!'
+        )
       }
     )
   }

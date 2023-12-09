@@ -5,6 +5,9 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { Subject, Subscription } from 'rxjs'
 import { LoginService } from 'src/app/services/userServices/login.service'
 
+/**
+ * Component for displaying the Header
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -33,6 +36,9 @@ export class HeaderComponent implements OnInit {
       })
   }
 
+  /**
+   * Logs out the user, clears local storage, and navigates to the login page.
+   */
   async logout (): Promise<void> {
     localStorage.removeItem('userId')
     this.authListner.next(false)
@@ -40,11 +46,15 @@ export class HeaderComponent implements OnInit {
     this.createNotification('success', 'Success', 'Logout SuccessFul')
   }
 
+  /**
+   * Creates and displays a notification.
+   * @param type The type of the notification (e.g., 'success', 'error').
+   * @param title The title of the notification.
+   * @param message The message content of the notification.
+   */
   createNotification (type: string, title: string, message: string): void {
     this.notification.create(type, title, message, {
-      nzStyle: {
-        marginTop: '50px'
-      }
+      nzStyle: { marginTop: '50px' }
     })
   }
 }

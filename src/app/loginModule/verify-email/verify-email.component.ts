@@ -1,9 +1,12 @@
 import { Component } from '@angular/core'
 import type { OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { SignupService } from 'src/app/services/userServices/signup.service'
 
+/**
+ * Component for displaying the Verify Email Page
+ */
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
@@ -20,6 +23,9 @@ export class VerifyEmailComponent implements OnInit {
     this.verifyEmail()
   }
 
+  /**
+   * Verifies the email using the token from the URL parameter.
+   */
   verifyEmail (): void {
     const token = this.route.snapshot.paramMap.get('token')
     const data = {
@@ -44,6 +50,11 @@ export class VerifyEmailComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Could not verify your Email address! Please try again!'
+        )
       }
     )
   }

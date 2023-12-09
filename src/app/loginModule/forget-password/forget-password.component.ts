@@ -3,9 +3,12 @@ import type { OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { NgxSpinnerService } from 'ngx-spinner'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { LoginService } from 'src/app/services/userServices/login.service'
 
+/**
+ * Component for handling the 'Forget Password' functionality.
+ */
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
@@ -34,6 +37,9 @@ export class ForgetPasswordComponent implements OnInit {
     console.log('Forget-password module')
   }
 
+  /**
+   * Submits the forget password form and navigates to the login page on success.
+   */
   submitForm (): void {
     this.SpinnerService.show()
     const data = {
@@ -67,10 +73,18 @@ export class ForgetPasswordComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Error occured! Please try again!'
+        )
       }
     )
   }
 
+  /**
+   * Resets the forget password form.
+   */
   cancelForm (): void {
     this.forgetpassForm.reset()
   }

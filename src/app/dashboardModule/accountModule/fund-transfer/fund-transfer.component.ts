@@ -3,12 +3,15 @@ import type { OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AccountService } from 'src/app/services/accountServices/account.service'
 import { Router } from '@angular/router'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { FundTransferService } from 'src/app/services/accountServices/fundTransfer.service'
 import { timeout, catchError } from 'rxjs/operators'
 import { of } from 'rxjs'
 
+/**
+ * Component for handling fund transfer operations.
+ */
 @Component({
   selector: 'app-fund-transfer',
   templateUrl: './fund-transfer.component.html',
@@ -48,6 +51,9 @@ export class FundTransferComponent implements OnInit {
     this.checkZeroAmount = false
   }
 
+  /**
+   * Submits the fund transfer form.
+   */
   submitForm (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -158,6 +164,9 @@ export class FundTransferComponent implements OnInit {
       )
   }
 
+  /**
+   * Resets the fund transfer form.
+   */
   getData (): void {
     const userID: number = Number(localStorage.getItem('userId'))
 

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { AccountService } from 'src/app/services/accountServices/account.service'
 import { StatementService } from 'src/app/services/accountServices/statement.service'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 
+/**
+ * Component for displaying account details and statements.
+ */
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',
@@ -31,6 +34,9 @@ export class AccountDetailsComponent implements OnInit {
     this.loadData()
   }
 
+  /**
+   * Downloads the account statement as a PDF.
+   */
   downloadPDF (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -58,6 +64,9 @@ export class AccountDetailsComponent implements OnInit {
     )
   }
 
+  /**
+   * Loads account data for the user.
+   */
   loadData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
     this.accountService.getAccounts(userId).subscribe(
@@ -75,6 +84,9 @@ export class AccountDetailsComponent implements OnInit {
     )
   }
 
+  /**
+   * Retrieves and displays statements for a given account.
+   */
   submitForm (accountId: any): void {
     this.isShown = false
     this.stmtService.getStatements(accountId).subscribe(

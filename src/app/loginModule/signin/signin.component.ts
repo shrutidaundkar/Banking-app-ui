@@ -4,8 +4,11 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { LoginService } from 'src/app/services/userServices/login.service'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 
+/**
+ * Component for handling user sign-in.
+ */
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -43,6 +46,9 @@ export class SigninComponent implements OnInit {
     this.authListner = this.loginModuleService.getAuthListner()
   }
 
+  /**
+   * Submits the sign-in form and navigates to the dashboard on successful login.
+   */
   submitForm (): void {
     const userLoginData = {
       email: this.signinForm.get('email')?.value,
@@ -77,10 +83,18 @@ export class SigninComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Could not login, please try again!'
+        )
       }
     )
   }
 
+  /**
+   * Resets the sign-in form.
+   */
   cancelForm (): void {
     this.signinForm.reset()
   }

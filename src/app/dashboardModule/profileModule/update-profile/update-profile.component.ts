@@ -2,9 +2,12 @@ import { Component } from '@angular/core'
 import type { OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { ProfileService } from 'src/app/services/userServices/profile.service'
 
+/**
+ * Component for updating user profile.
+ */
 @Component({
   selector: 'app-update-profile',
   templateUrl: './update-profile.component.html',
@@ -31,7 +34,6 @@ export class UpdateProfileComponent implements OnInit {
       gender: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-
       dateofbirth: new FormControl('', [Validators.required])
     })
   }
@@ -70,12 +72,12 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   formatLabel (value: number): any {
-    if (value >= 1) {
-      return value + 'yr'
-    }
-    return value
+    return (value >= 1) ? value + 'yr' : value
   }
 
+  /**
+   * Submits the updated profile data and navigates to profile page on success.
+   */
   submitForm (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -95,7 +97,7 @@ export class UpdateProfileComponent implements OnInit {
 
     this.profileService.updateUserProfile(userProfileData).subscribe(
       (response) => {
-        if (response != null) {
+        if (response !== null) {
           this.notificationService.createNotification(
             'success',
             'Success',
@@ -109,7 +111,7 @@ export class UpdateProfileComponent implements OnInit {
             .catch(() => {
               console.log('Error Occured!')
             })
-        } else if (response == null) {
+        } else if (response === null) {
           this.notificationService.createNotification(
             'error',
             'Error',
@@ -119,10 +121,18 @@ export class UpdateProfileComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Profile could not be updated, try again!'
+        )
       }
     )
   }
 
+  /**
+   * Resets the update profile form.
+   */
   cancelForm (): void {
     this.updateProfileForm.reset()
   }

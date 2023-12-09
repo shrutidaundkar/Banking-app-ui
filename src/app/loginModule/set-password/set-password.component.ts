@@ -3,9 +3,12 @@ import type { OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { CustomValidator } from '../../custom.validator'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { LoginService } from 'src/app/services/userServices/login.service'
 
+/**
+ * Component for setting or resetting a user's password.
+ */
 @Component({
   selector: 'app-set-password',
   templateUrl: './set-password.component.html',
@@ -43,6 +46,9 @@ export class SetPasswordComponent implements OnInit {
     console.log('Password Component')
   }
 
+  /**
+   * Submits the set password form and navigatess to the login page when successful.
+   */
   submitForm (): void {
     const token = this.route.snapshot.paramMap.get('token')
     const setPasswordData = {
@@ -76,10 +82,18 @@ export class SetPasswordComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Password set unsuccessful! Please try again!'
+        )
       }
     )
   }
 
+  /**
+   * Resets the set password form.
+   */
   cancelForm (): void {
     this.setPasswordForm.reset()
   }

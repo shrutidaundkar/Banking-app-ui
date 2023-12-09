@@ -2,11 +2,14 @@ import { Component } from '@angular/core'
 import type { OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { LoanService } from 'src/app/services/accountServices/loan.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { AccountService } from 'src/app/services/accountServices/account.service'
 
+/**
+ * Component for creating a new loan application.
+ */
 @Component({
   selector: 'app-create-loan',
   templateUrl: './create-loan.component.html',
@@ -61,13 +64,8 @@ export class CreateLoanComponent implements OnInit {
   }
 
   updateInterestRate (): void {
-    if (this.createLoanForm.get('loanPurpose')?.value === 'Personal') {
-      this.interestRate = 12
-    } else if (this.createLoanForm.get('loanPurpose')?.value === 'Home') {
-      this.interestRate = 7
-    } else {
-      this.interestRate = 9
-    }
+    const loanReason = this.createLoanForm.get('loanPurpose')?.value
+    this.interestRate = (loanReason === 'Personal') ? 12 : (loanReason === 'Home') ? 7 : 9
   }
 
   calculateEMI (): void {
@@ -88,6 +86,9 @@ export class CreateLoanComponent implements OnInit {
       Math.round((this.interestAmount + Number.EPSILON) * 100) / 100
   }
 
+  /**
+   * Submits the loan application form data.
+   */
   createLoan (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -146,6 +147,11 @@ export class CreateLoanComponent implements OnInit {
               },
               (error: any) => {
                 console.log(error)
+                this.notificationService.createNotification(
+                  'error',
+                  'Error',
+                  'Problem occured while applying for Loan.'
+                )
               }
             )
           } else if (response.statusCode === 400) {
@@ -168,6 +174,9 @@ export class CreateLoanComponent implements OnInit {
       )
   }
 
+  /**
+   * Fetches account data for the user.
+   */
   getData (): void {
     const userID: number = Number(localStorage.getItem('userId'))
 

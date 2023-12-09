@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HeaderComponent } from './mainModule/header/header.component'
@@ -10,7 +9,6 @@ import { SigninComponent } from './loginModule/signin/signin.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 import { MatTableModule } from '@angular/material/table'
 import { CommonModule, registerLocaleData } from '@angular/common'
 import { MatSliderModule } from '@angular/material/slider'
@@ -25,7 +23,6 @@ import { DashboardComponent } from './dashboardModule/dashboard.component'
 import { VerifyEmailComponent } from './loginModule/verify-email/verify-email.component'
 import { SideNavigationComponent } from './mainModule/side-navigation/side-navigation.component'
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n'
-
 import { NzAlertModule } from 'ng-zorro-antd/alert'
 import { NzNotificationModule } from 'ng-zorro-antd/notification'
 import { NgxSpinnerModule } from 'ngx-spinner'

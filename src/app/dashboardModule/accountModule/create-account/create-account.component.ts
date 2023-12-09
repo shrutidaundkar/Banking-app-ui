@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AccountService } from 'src/app/services/accountServices/account.service'
 import { Router } from '@angular/router'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 
+/**
+ * Component for creating a new bank account.
+ */
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -36,6 +39,9 @@ export class CreateAccountComponent implements OnInit {
     console.log('Account Component')
   }
 
+  /**
+   * Submits the account creation form.
+   */
   submitForm (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -82,6 +88,9 @@ export class CreateAccountComponent implements OnInit {
     )
   }
 
+  /**
+   * Resets the account creation form.
+   */
   cancelForm (): void {
     this.createAccountForm.reset()
   }

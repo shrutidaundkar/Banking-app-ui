@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { StatementService } from 'src/app/services/accountServices/statement.service'
 import { AccountService } from 'src/app/services/accountServices/account.service'
-import { NotificationService } from 'src/app/services/notification.service'
+import { NotificationService } from 'src/app/services/commonServices/notification.service'
 
 @Component({
   selector: 'app-account-statement',
@@ -41,6 +41,9 @@ export class AccountStatementComponent implements OnInit {
     this.getData()
   }
 
+  /**
+   * Submits the statement form and retrieves account statements.
+   */
   submitForm (): void {
     this.fromAccountId = this.statementForm.get('fromAccount')?.value
     this.statementService.getStatements(this.fromAccountId).subscribe(
@@ -85,6 +88,9 @@ export class AccountStatementComponent implements OnInit {
     { title: 'Description', dataKey: 'description' }
   ]
 
+  /**
+   * Custom sorting logic for statement data.
+   */
   customSort (event: {
     data: any[]
     field: string | number
@@ -104,6 +110,9 @@ export class AccountStatementComponent implements OnInit {
     })
   }
 
+  /**
+   * Fetches account data for the user.
+   */
   getData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
@@ -117,6 +126,9 @@ export class AccountStatementComponent implements OnInit {
     )
   }
 
+  /**
+   * Resets the statement form.
+   */
   cancelForm (): void {
     this.statementForm.reset()
   }

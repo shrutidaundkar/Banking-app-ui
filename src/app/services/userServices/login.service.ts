@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import type { Observable } from 'rxjs'
 import { Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { ConfigService } from '../config.service'
+import { ConfigService } from '../commonServices/config.service'
 
 /**
  * Service to handle login and authentication related operations.
