@@ -7,7 +7,10 @@ export function CustomValidator (
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName]
     const matchingControl = formGroup.controls[matchingControlName]
-    if ((matchingControl.errors != null) && matchingControl.errors.confirmedValidator !== null) {
+    if (
+      matchingControl.errors != null &&
+      matchingControl.errors.confirmedValidator !== null
+    ) {
       return
     }
     if (control.value !== matchingControl.value) {

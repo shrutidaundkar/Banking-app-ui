@@ -27,10 +27,10 @@
         <ng-template pTemplate="body" let-account>
           <tr>
             <td>{{ account.loan.loanId }}</td>
-            <td>{{ account.loan.loanAmount | currency : "USD" : "symbol" }}</td>
+            <td>{{ account.loan.loanAmount | currency: "USD" : "symbol" }}</td>
             <td>{{ account.loan.loanPurpose }}</td>
             <td>
-              {{ account.loan.remainingAmount | currency : "USD" : "symbol" }}
+              {{ account.loan.remainingAmount | currency: "USD" : "symbol" }}
             </td>
             <td>{{ account.loan.interest }} %</td>
             <td>
@@ -39,7 +39,7 @@
               }}
               years)
             </td>
-            <td>{{ account.loan.monthlyEMI | currency : "USD" : "symbol" }}</td>
+            <td>{{ account.loan.monthlyEMI | currency: "USD" : "symbol" }}</td>
             <td>{{ account.accountId }}</td>
           </tr>
         </ng-template>

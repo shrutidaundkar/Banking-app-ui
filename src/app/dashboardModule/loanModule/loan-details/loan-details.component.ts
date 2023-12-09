@@ -23,20 +23,26 @@ export class LoanDetailsComponent implements OnInit {
   getData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
-    this.accountService.getAccounts(userId).subscribe((response) => {
-      if (Object.keys(response).length !== 0 && response.some((res: any) => res.loan !== null) === true) {
-        console.log(response)
-        this.accounts = response
-        this.isShown = true
-      } else {
-        this.notificationService.createNotification(
-          'error',
-          'Error',
-          'No Loan Accounts found!'
-        )
+    this.accountService.getAccounts(userId).subscribe(
+      (response) => {
+        if (
+          Object.keys(response).length !== 0 &&
+          response.some((res: any) => res.loan !== null) === true
+        ) {
+          console.log(response)
+          this.accounts = response
+          this.isShown = true
+        } else {
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            'No Loan Accounts found!'
+          )
+        }
+      },
+      () => {
+        console.log('Error occured while retrieving Accounts!')
       }
-    }, () => {
-      console.log('Error occured while retrieving Accounts!')
-    })
+    )
   }
 }

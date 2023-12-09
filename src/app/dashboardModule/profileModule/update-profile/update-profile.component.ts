@@ -101,11 +101,14 @@ export class UpdateProfileComponent implements OnInit {
             'Success',
             'Profile Updated Successfully'
           )
-          this.router.navigate(['/dashboard/profile']).then(() => {
-            console.log('Registration Unsuccessful')
-          }).catch(() => {
-            console.log('Error Occured!')
-          })
+          this.router
+            .navigate(['/dashboard/profile'])
+            .then(() => {
+              console.log('Registration Unsuccessful')
+            })
+            .catch(() => {
+              console.log('Error Occured!')
+            })
         } else if (response == null) {
           this.notificationService.createNotification(
             'error',

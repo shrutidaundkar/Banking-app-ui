@@ -54,11 +54,14 @@ export class CreateAccountComponent implements OnInit {
             'Success',
             response.message
           )
-          this.router.navigate(['/dashboard/account-details']).then(() => {
-            console.log('Registration Successful')
-          }).catch(() => {
-            console.log('Error Occured')
-          })
+          this.router
+            .navigate(['/dashboard/account-details'])
+            .then(() => {
+              console.log('Registration Successful')
+            })
+            .catch(() => {
+              console.log('Error Occured')
+            })
         } else if (response.statusCode === 400) {
           this.notificationService.createNotification(
             'error',

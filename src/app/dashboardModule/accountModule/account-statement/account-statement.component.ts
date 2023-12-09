@@ -43,9 +43,8 @@ export class AccountStatementComponent implements OnInit {
 
   submitForm (): void {
     this.fromAccountId = this.statementForm.get('fromAccount')?.value
-    this.statementService
-      .getStatements(this.fromAccountId)
-      .subscribe((response: any) => {
+    this.statementService.getStatements(this.fromAccountId).subscribe(
+      (response: any) => {
         this.statements = response
         this.loading = false
         if (Object.keys(response).length !== 0) {
@@ -63,14 +62,16 @@ export class AccountStatementComponent implements OnInit {
             'No transactions found!'
           )
         }
-      }, (error) => {
+      },
+      (error) => {
         console.log('statement data', error.message)
         this.notificationService.createNotification(
           'error',
           'Error',
           'Statement could not be loaded! Try again.'
         )
-      })
+      }
+    )
   }
 
   columns = [
@@ -84,7 +85,11 @@ export class AccountStatementComponent implements OnInit {
     { title: 'Description', dataKey: 'description' }
   ]
 
-  customSort (event: { data: any[], field: string | number, order: number }): any {
+  customSort (event: {
+    data: any[]
+    field: string | number
+    order: number
+  }): any {
     event.data?.sort((data1, data2) => {
       const value1 = data1[event.field]
       const value2 = data2[event.field]
@@ -102,11 +107,14 @@ export class AccountStatementComponent implements OnInit {
   getData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
 
-    this.accountService.getAccounts(userId).subscribe((res) => {
-      this.accounts = res
-    }, (error) => {
-      console.log('Account Data could not be retrieved', error)
-    })
+    this.accountService.getAccounts(userId).subscribe(
+      (res) => {
+        this.accounts = res
+      },
+      (error) => {
+        console.log('Account Data could not be retrieved', error)
+      }
+    )
   }
 
   cancelForm (): void {

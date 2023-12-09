@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import type { Observable } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
-import { HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { ConfigService } from '../config.service'
 
 /**

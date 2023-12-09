@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
   }
 
   formatLabel (value: number): any {
-    return (value >= 1) ? value + 'yr' : value
+    return value >= 1 ? value + 'yr' : value
   }
 
   getToday (): string {
@@ -81,22 +81,28 @@ export class SignupComponent implements OnInit {
             'Success',
             response.message
           )
-          this.router.navigate(['/login']).then(() => {
-            console.log('Registration Successful')
-          }).catch(() => {
-            console.log('Error Occured')
-          })
+          this.router
+            .navigate(['/login'])
+            .then(() => {
+              console.log('Registration Successful')
+            })
+            .catch(() => {
+              console.log('Error Occured')
+            })
         } else if (response.statusCode === 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
             response.message
           )
-          this.router.navigate(['/signup']).then(() => {
-            console.log('Registration successful')
-          }).catch(() => {
-            console.log('Error Occured!')
-          })
+          this.router
+            .navigate(['/signup'])
+            .then(() => {
+              console.log('Registration successful')
+            })
+            .catch(() => {
+              console.log('Error Occured!')
+            })
         }
       },
       (error: any) => {

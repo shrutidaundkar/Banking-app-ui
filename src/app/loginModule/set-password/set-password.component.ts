@@ -58,11 +58,14 @@ export class SetPasswordComponent implements OnInit {
             'Success',
             response.message
           )
-          this.router.navigate(['/login']).then(() => {
-            console.log('Registration Successful')
-          }).catch(() => {
-            console.log('Error Occured')
-          })
+          this.router
+            .navigate(['/login'])
+            .then(() => {
+              console.log('Registration Successful')
+            })
+            .catch(() => {
+              console.log('Error Occured')
+            })
         } else if (response.statusCode === 400) {
           this.notificationService.createNotification(
             'error',

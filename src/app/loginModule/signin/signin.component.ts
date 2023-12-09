@@ -53,11 +53,14 @@ export class SigninComponent implements OnInit {
       (response) => {
         if (response.message === 'Login Successful') {
           localStorage.setItem('userId', response.statusCode)
-          this.router.navigate(['/dashboard/home']).then(() => {
-            console.log('Registration Successful')
-          }).catch(() => {
-            console.log('Error Occured')
-          })
+          this.router
+            .navigate(['/dashboard/home'])
+            .then(() => {
+              console.log('Registration Successful')
+            })
+            .catch(() => {
+              console.log('Error Occured')
+            })
           this.authListner.next(true)
           this.notificationService.createNotification(
             'success',

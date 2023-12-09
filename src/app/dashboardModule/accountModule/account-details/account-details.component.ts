@@ -60,30 +60,36 @@ export class AccountDetailsComponent implements OnInit {
 
   loadData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
-    this.accountService.getAccounts(userId).subscribe((res) => {
-      this.accounts = res
-    }, (error) => {
-      console.log('Account Data could not be retrieved', error)
-      this.notificationService.createNotification(
-        'error',
-        'Error',
-        'No Accounts Found, please add a new account using "Add Account" button!'
-      )
-    })
+    this.accountService.getAccounts(userId).subscribe(
+      (res) => {
+        this.accounts = res
+      },
+      (error) => {
+        console.log('Account Data could not be retrieved', error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'No Accounts Found, please add a new account using "Add Account" button!'
+        )
+      }
+    )
   }
 
   submitForm (accountId: any): void {
     this.isShown = false
-    this.stmtService.getStatements(accountId).subscribe((response: any) => {
-      this.statements = response
-    }, (error) => {
-      console.log('Statement Data could not be retrieved', error)
-      this.notificationService.createNotification(
-        'error',
-        'Error',
-        'Statement Data could not be retrieved! Please contact support if the issur persists.'
-      )
-    })
+    this.stmtService.getStatements(accountId).subscribe(
+      (response: any) => {
+        this.statements = response
+      },
+      (error) => {
+        console.log('Statement Data could not be retrieved', error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Statement Data could not be retrieved! Please contact support if the issur persists.'
+        )
+      }
+    )
     this.isShown = true
     this.accId = accountId
   }

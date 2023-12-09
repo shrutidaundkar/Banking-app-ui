@@ -53,11 +53,11 @@ export class CreateLoanComponent implements OnInit {
   }
 
   formatAmount (value: number): number {
-    return (value >= 1) ? value / 100000 : value
+    return value >= 1 ? value / 100000 : value
   }
 
   formatTenure (value: number): any {
-    return (value >= 1) ? value : 0.5
+    return value >= 1 ? value : 0.5
   }
 
   updateInterestRate (): void {
@@ -120,22 +120,28 @@ export class CreateLoanComponent implements OnInit {
                     'Success',
                     response.message
                   )
-                  this.router.navigate(['/dashboard/loan-details']).then(() => {
-                    console.log('Registration Successful')
-                  }).catch(() => {
-                    console.log('Error Occured')
-                  })
+                  this.router
+                    .navigate(['/dashboard/loan-details'])
+                    .then(() => {
+                      console.log('Registration Successful')
+                    })
+                    .catch(() => {
+                      console.log('Error Occured')
+                    })
                 } else if (response.statusCode === 400) {
                   this.notificationService.createNotification(
                     'error',
                     'Error',
                     response.message
                   )
-                  this.router.navigate(['/create-loan']).then(() => {
-                    console.log('Registration Successful')
-                  }).catch(() => {
-                    console.log('Error Occured')
-                  })
+                  this.router
+                    .navigate(['/create-loan'])
+                    .then(() => {
+                      console.log('Registration Successful')
+                    })
+                    .catch(() => {
+                      console.log('Error Occured')
+                    })
                 }
               },
               (error: any) => {

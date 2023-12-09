@@ -73,11 +73,14 @@ export class FundTransferComponent implements OnInit {
               'Success',
               response.message
             )
-            this.router.navigate(['/dashboard/account-details']).then(() => {
-              console.log('Registration Successful')
-            }).catch(() => {
-              console.log('Error Occured')
-            })
+            this.router
+              .navigate(['/dashboard/account-details'])
+              .then(() => {
+                console.log('Registration Successful')
+              })
+              .catch(() => {
+                console.log('Error Occured')
+              })
           } else if (response.statusCode === 400) {
             setTimeout(() => {
               this.SpinnerService.hide()
@@ -112,37 +115,47 @@ export class FundTransferComponent implements OnInit {
     this.SpinnerService.show()
     const userId: number = Number(localStorage.getItem('userId'))
 
-    this.fundTransferService.getOTP(userId).pipe(
-      timeout(3000),
-      catchError(() => {
-        this.SpinnerService.hide()
-        this.notificationService.createNotification('error', 'Error', 'Request Timed out!')
-        return of(null)
-      })
-    ).subscribe((response) => {
-      this.SpinnerService.hide()
-      if (response.statusCode === 201) {
-        this.notificationService.createNotification(
-          'success',
-          'Success',
-          response.message
-        )
-      } else if (response.statusCode === 400) {
-        this.notificationService.createNotification(
-          'error',
-          'Error',
-          response.message
-        )
-      }
-    }, (error: any) => {
-      console.log(error)
-      this.SpinnerService.hide()
-      this.notificationService.createNotification(
-        'error',
-        'Error',
-        'Could not transfer funds, try again!'
+    this.fundTransferService
+      .getOTP(userId)
+      .pipe(
+        timeout(3000),
+        catchError(() => {
+          this.SpinnerService.hide()
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            'Request Timed out!'
+          )
+          return of(null)
+        })
       )
-    })
+      .subscribe(
+        (response) => {
+          this.SpinnerService.hide()
+          if (response.statusCode === 201) {
+            this.notificationService.createNotification(
+              'success',
+              'Success',
+              response.message
+            )
+          } else if (response.statusCode === 400) {
+            this.notificationService.createNotification(
+              'error',
+              'Error',
+              response.message
+            )
+          }
+        },
+        (error: any) => {
+          console.log(error)
+          this.SpinnerService.hide()
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            'Could not transfer funds, try again!'
+          )
+        }
+      )
   }
 
   getData (): void {

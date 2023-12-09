@@ -1,24 +1,25 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "standard-with-typescript",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-        "@typescript-eslint/consistent-type-imports": "off",
-        "@typescript-eslint/unbound-method": "off" // implicit reference to `this` in static method issue
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "standard-with-typescript",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/unbound-method": "off" // implicit reference to `this` in static method issue
+  }
 }
-    // -------------------------------------------------------------------------------------------------- 
-    // Eslint Problem with Validators.required
-    // Problem description: Avoid referencing unbound methods which may cause unintentional scoping of
-    // `this`. If your function does not access `this`, you can annotate it with `this: void`, or
-    // consider using an arrow function instead.eslint@typescript-eslint/unbound-method
-    // Issue: https://github.com/typescript-eslint/typescript-eslint/issues/1929
-    // Documentation: https://angular.io/guide/form-validation#built-in-validators
-    // Disabled according to the suggestion given in the Issue #1912
-    // -------------------------------------------------------------------------------------------------- 
+// --------------------------------------------------------------------------------------------------
+// Eslint Problem with Validators.required
+// Problem description: Avoid referencing unbound methods which may cause unintentional scoping of
+// `this`. If your function does not access `this`, you can annotate it with `this: void`, or
+// consider using an arrow function instead.eslint@typescript-eslint/unbound-method
+// Issue: https://github.com/typescript-eslint/typescript-eslint/issues/1929
+// Documentation: https://angular.io/guide/form-validation#built-in-validators
+// Disabled according to the suggestion given in the Issue #1912
+
+// --------------------------------------------------------------------------------------------------
