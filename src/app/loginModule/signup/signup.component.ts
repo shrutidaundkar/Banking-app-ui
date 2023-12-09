@@ -21,13 +21,6 @@ export class SignupComponent implements OnInit {
     private readonly notificationService: NotificationService,
     private readonly SpinnerService: NgxSpinnerService
   ) {
-    // Eslint Problem with Validators.required
-    // Problem description: Avoid referencing unbound methods which may cause unintentional scoping of
-    // `this`. If your function does not access `this`, you can annotate it with `this: void`, or
-    // consider using an arrow function instead.eslint@typescript-eslint/unbound-method
-    //  Issue: https://github.com/typescript-eslint/typescript-eslint/issues/1929
-    // Documentation: https://angular.io/guide/form-validation#built-in-validators
-    // Disabled according to the suggestion given in the Issue #1912
     this.signupForm = this.fb.group({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -59,10 +52,7 @@ export class SignupComponent implements OnInit {
   }
 
   formatLabel (value: number): any {
-    if (value >= 1) {
-      return value + 'yr'
-    }
-    return value
+    return (value >= 1) ? value + 'yr' : value
   }
 
   getToday (): string {
@@ -81,8 +71,6 @@ export class SignupComponent implements OnInit {
       dateofbirth: this.signupForm.get('dateofbirth')?.value,
       password: this.signupForm.get('password')?.value
     }
-
-    console.log(userSaveData)
 
     this.signupService.saveUser(userSaveData).subscribe(
       (response) => {
@@ -105,7 +93,7 @@ export class SignupComponent implements OnInit {
             response.message
           )
           this.router.navigate(['/signup']).then(() => {
-            console.log('Registration Unsuccessful')
+            console.log('Registration successful')
           }).catch(() => {
             console.log('Error Occured!')
           })
@@ -113,6 +101,12 @@ export class SignupComponent implements OnInit {
       },
       (error: any) => {
         console.log(error)
+        this.SpinnerService.hide()
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          error.message
+        )
       }
     )
   }

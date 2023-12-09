@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AccountService } from 'src/app/services/accountServices/account.service'
 import { StatementService } from 'src/app/services/accountServices/statement.service'
+import { NotificationService } from 'src/app/services/notification.service'
 
 @Component({
   selector: 'app-account-details',
@@ -22,11 +23,12 @@ export class AccountDetailsComponent implements OnInit {
 
   constructor (
     private readonly accountService: AccountService,
-    private readonly stmtService: StatementService
+    private readonly stmtService: StatementService,
+    private readonly notificationService: NotificationService
   ) {}
 
   ngOnInit (): void {
-    this.getData()
+    this.loadData()
   }
 
   downloadPDF (): void {
@@ -47,15 +49,26 @@ export class AccountDetailsComponent implements OnInit {
       },
       (error) => {
         console.log('getPDF error: ', error)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Error Occured, please contact support!'
+        )
       }
     )
   }
 
-  getData (): void {
+  loadData (): void {
     const userId: number = Number(localStorage.getItem('userId'))
-
     this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res
+    }, (error) => {
+      console.log('Account Data could not be retrieved', error)
+      this.notificationService.createNotification(
+        'error',
+        'Error',
+        'No Accounts Found, please add a new account using "Add Account" button!'
+      )
     })
   }
 
@@ -63,6 +76,13 @@ export class AccountDetailsComponent implements OnInit {
     this.isShown = false
     this.stmtService.getStatements(accountId).subscribe((response: any) => {
       this.statements = response
+    }, (error) => {
+      console.log('Statement Data could not be retrieved', error)
+      this.notificationService.createNotification(
+        'error',
+        'Error',
+        'Statement Data could not be retrieved! Please contact support if the issur persists.'
+      )
     })
     this.isShown = true
     this.accId = accountId

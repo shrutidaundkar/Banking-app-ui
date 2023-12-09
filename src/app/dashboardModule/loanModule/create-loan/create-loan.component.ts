@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import { Component } from '@angular/core'
 import type { OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
@@ -54,17 +53,11 @@ export class CreateLoanComponent implements OnInit {
   }
 
   formatAmount (value: number): number {
-    if (value >= 1) {
-      return value / 100000
-    }
-    return value
+    return (value >= 1) ? value / 100000 : value
   }
 
   formatTenure (value: number): any {
-    if (value >= 1) {
-      return value
-    }
-    return value
+    return (value >= 1) ? value : 0.5
   }
 
   updateInterestRate (): void {
@@ -159,6 +152,12 @@ export class CreateLoanComponent implements OnInit {
         },
         (error: any) => {
           console.log(error)
+          this.SpinnerService.hide()
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            error.message
+          )
         }
       )
   }

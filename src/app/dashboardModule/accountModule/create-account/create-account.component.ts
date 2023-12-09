@@ -63,12 +63,18 @@ export class CreateAccountComponent implements OnInit {
           this.notificationService.createNotification(
             'error',
             'Error',
-            response.message
+            'Account could not be created!'
           )
         }
       },
       (error: any) => {
         console.log(error)
+        this.SpinnerService.hide()
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Account could not be created! Please try again!'
+        )
       }
     )
   }

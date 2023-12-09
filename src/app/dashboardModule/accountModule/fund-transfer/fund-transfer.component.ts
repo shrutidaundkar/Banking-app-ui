@@ -6,6 +6,8 @@ import { Router } from '@angular/router'
 import { NotificationService } from 'src/app/services/notification.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { FundTransferService } from 'src/app/services/accountServices/fundTransfer.service'
+import { timeout, catchError } from 'rxjs/operators'
+import { of } from 'rxjs'
 
 @Component({
   selector: 'app-fund-transfer',
@@ -89,6 +91,12 @@ export class FundTransferComponent implements OnInit {
         },
         (error: any) => {
           console.log(error)
+          this.SpinnerService.hide()
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            'Error Occured!'
+          )
         }
       )
     }
@@ -98,11 +106,20 @@ export class FundTransferComponent implements OnInit {
     this.fundTransferForm.reset()
   }
 
+  // This method will not work as Backend does not have any Mailing Account set-up to do so.
+  // Use 100 as a workaround OTP to send funds
   getOTP (): void {
     this.SpinnerService.show()
     const userId: number = Number(localStorage.getItem('userId'))
 
-    this.fundTransferService.getOTP(userId).subscribe((response) => {
+    this.fundTransferService.getOTP(userId).pipe(
+      timeout(3000),
+      catchError(() => {
+        this.SpinnerService.hide()
+        this.notificationService.createNotification('error', 'Error', 'Request Timed out!')
+        return of(null)
+      })
+    ).subscribe((response) => {
       this.SpinnerService.hide()
       if (response.statusCode === 201) {
         this.notificationService.createNotification(
@@ -117,6 +134,14 @@ export class FundTransferComponent implements OnInit {
           response.message
         )
       }
+    }, (error: any) => {
+      console.log(error)
+      this.SpinnerService.hide()
+      this.notificationService.createNotification(
+        'error',
+        'Error',
+        'Could not transfer funds, try again!'
+      )
     })
   }
 

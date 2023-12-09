@@ -2,3 +2,11 @@
   margin: 1.5%;
   width: 97%;
 }
+h4{
+  font-size: larger;
+  font-weight: bold;
+  color: red;
+}
+h5{
+  font-size: medium;
+}

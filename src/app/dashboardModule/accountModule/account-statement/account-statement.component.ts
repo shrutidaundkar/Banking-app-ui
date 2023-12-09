@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { StatementService } from 'src/app/services/accountServices/statement.service'
 import { AccountService } from 'src/app/services/accountServices/account.service'
+import { NotificationService } from 'src/app/services/notification.service'
 
 @Component({
   selector: 'app-account-statement',
@@ -24,7 +25,8 @@ export class AccountStatementComponent implements OnInit {
   constructor (
     fb: FormBuilder,
     private readonly statementService: StatementService,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private readonly notificationService: NotificationService
   ) {
     this.statementForm = fb.group({
       fromAccount: new FormControl('', [Validators.required])
@@ -46,13 +48,28 @@ export class AccountStatementComponent implements OnInit {
       .subscribe((response: any) => {
         this.statements = response
         this.loading = false
-        this.isShown = true
-        this.statements.forEach(
-          (i: { transactionDate: string | number | Date }) => {
-            i.transactionDate = new Date(i.transactionDate)
-          }
+        if (Object.keys(response).length !== 0) {
+          this.isShown = true
+          this.statements.forEach(
+            (i: { transactionDate: string | number | Date }) => {
+              i.transactionDate = new Date(i.transactionDate)
+            }
+          )
+          console.log('statement data', this.statements)
+        } else {
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            'No transactions found!'
+          )
+        }
+      }, (error) => {
+        console.log('statement data', error.message)
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          'Statement could not be loaded! Try again.'
         )
-        console.log('statement data', this.statements)
       })
   }
 
@@ -72,9 +89,9 @@ export class AccountStatementComponent implements OnInit {
       const value1 = data1[event.field]
       const value2 = data2[event.field]
       let result = null
-      if (value1 == null && value2 != null) result = -1
-      else if (value1 != null && value2 == null) result = 1
-      else if (value1 == null && value2 == null) result = 0
+      if (value1 === null && value2 !== null) result = -1
+      else if (value1 !== null && value2 === null) result = 1
+      else if (value1 === null && value2 === null) result = 0
       else if (typeof value1 === 'string' && typeof value2 === 'string') {
         result = value1.localeCompare(value2)
       } else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0
@@ -87,6 +104,8 @@ export class AccountStatementComponent implements OnInit {
 
     this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res
+    }, (error) => {
+      console.log('Account Data could not be retrieved', error)
     })
   }
 
